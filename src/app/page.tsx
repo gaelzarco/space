@@ -1,6 +1,11 @@
-export const runtime = 'edge'
+import { db } from '@/lib/db'
 
-export default function Home() {
+export const runtime = 'edge'
+export const revalidate = 0 // disable cache
+
+export default async function Home() {
+  await db.set('test', 'test')
+
   return (
     <main className="flex min-h-screen flex-col items-center p-24">
       <h1>Welcome to Space!</h1>
