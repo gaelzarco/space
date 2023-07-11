@@ -1,13 +1,21 @@
-import { NextResponse } from 'next/server'
-import { get } from '@vercel/edge-config'
-
 export const config = {
-  matcher: '/greeting',
+  matcher: ['/dashboard'],
 }
 
-export async function middleware() {
-  const greeting = await get('greeting')
-  // NextResponse.json requires at least Next v13.1 or
-  // enabling experimental.allowMiddlewareResponseBody in next.config.js
-  return NextResponse.json(greeting)
-}
+import { withAuth } from 'next-auth/middleware'
+
+export default withAuth(
+  // `withAuth` augments your `Request` with the user's token.
+  function middleware(req) {
+    console.log(req.nextauth.token)
+  },
+  {
+    callbacks: {
+      authorized: ({ token }) => token?.id === null,
+    },
+    pages: {
+      signIn: '/login',
+      error: '/login',
+    },
+  }
+)
