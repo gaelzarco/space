@@ -1,7 +1,6 @@
 import { db } from '@/lib/db'
 
 export const runtime = 'edge'
-export const revalidate = 0 // disable cache
 
 export default async function Home() {
   await db.set('test', 'test')
