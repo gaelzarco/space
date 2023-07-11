@@ -17,9 +17,11 @@ const Button: FC<ButtonProps> = ({
   return (
     <button
       className={cn(
-        'inline-flex items-center bg-neutral-800 hover:bg-neutral-700 text-white py-2 px-6 rounded-xl transition-colors duration-200 ease-in-out',
-        { 'cursor-not-allowed': isLoading },
-        { 'opacity-50': isLoading },
+        'inline-flex items-center min-w-[100px] justify-center bg-neutral-800 hover:bg-neutral-700 text-white py-2 px-6 m-2 rounded-xl transition-all duration-200 ease-in-out',
+        {
+          'cursor-not-allowed animate-pulse bg-white text-black hover:bg-white':
+            isLoading,
+        },
         className
       )}
       onClick={(e) => {
@@ -27,8 +29,9 @@ const Button: FC<ButtonProps> = ({
       }}
       {...props}
     >
-      {isLoading && 'loading...'}
-      {children}
+      <div className="inline-flex mx-2 items-center justify-center">
+        {children}
+      </div>
     </button>
   )
 }
