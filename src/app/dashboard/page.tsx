@@ -4,7 +4,7 @@ import { type FC } from 'react'
 
 type PageProps = {}
 
-const page: FC<PageProps> = ({}) => {
+const Dashboard: FC<PageProps> = ({}) => {
   return (
     <div>
       <h1>Dashboard</h1>
@@ -12,4 +12,4 @@ const page: FC<PageProps> = ({}) => {
   )
 }
 
-export default page
+export default Dashboard

@@ -6,7 +6,7 @@ import Button from '@/components/ui/button'
 
 type PageProps = {}
 
-const page: FC<PageProps> = ({}) => {
+const Login: FC<PageProps> = ({}) => {
   const [isGitHubLoading, setIsGitHubLoading] = useState<boolean>(false)
   const [isGoogleLoading, setIsGoogleLoading] = useState<boolean>(false)
 
@@ -98,4 +98,4 @@ const page: FC<PageProps> = ({}) => {
   )
 }
 
-export default page
+export default Login
