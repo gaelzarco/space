@@ -1,5 +1,7 @@
 'use client'
 
+export const runtime = 'edge'
+
 import { type FC } from 'react'
 
 type PageProps = {}
