@@ -1,6 +1,6 @@
 import { type FC, type HTMLAttributes } from 'react'
-import { getServerSession } from 'next-auth'
-import { GET } from '@/app/api/auth/[...nextauth]/route'
+import { type Session, getServerSession } from 'next-auth'
+import { authOptions } from '@/app/api/auth/[...nextauth]/route'
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
 
@@ -15,12 +15,12 @@ const LandingNavBar: FC<NavBarProps> = async ({
   onClick,
   ...props
 }) => {
-  const session = getServerSession(GET)
+  const session: Session | null = await getServerSession(authOptions)
 
   return (
     <nav
       className={cn(
-        'inline-flex min-w-full h-[80px] items-center justify-between border-b border-neutral-200 dark:border-neutral-800 text-black dark:text-white p-4 mx-2',
+        'inline-flex min-w-full h-[80px] items-center justify-between border-b border-neutral-200 dark:border-neutral-800 text-black dark:text-white p-4',
         className
       )}
       {...props}
@@ -36,13 +36,13 @@ const LandingNavBar: FC<NavBarProps> = async ({
         <ThemeSwitcher />
       </div>
 
-      {!!session ? (
-        <Link href="/dashboard" className="justify-self-end">
-          <Button>Dashboard</Button>
-        </Link>
-      ) : (
+      {!session ? (
         <Link href="/login" className="justify-self-end">
           <Button>Login</Button>
+        </Link>
+      ) : (
+        <Link href="/dashboard" className="justify-self-end">
+          <Button>Dashboard</Button>
         </Link>
       )}
     </nav>

@@ -12,7 +12,7 @@ export default function Home() {
         <h1 className="text-8xl font-bold text-center">Your real-time chat</h1>
         <h1 className="text-8xl font-bold text-center">application</h1>
 
-        <div className="flex flex-row w-full items-center my-10">
+        <div className="flex flex-row w-full items-center justify-center my-10">
           <div className="mt-10 flex flex-row items-center w-[95%] h-[180px] justify-between">
             <div className="flex flex-col items-center leading-8 justify-center w-[32.9%] h-full bg-neutral-200 dark:bg-neutral-900 dark:text-white rounded-l-[45px] rounded-r-lg">
               <h1 className="text-xl font-semibold">NextJS 13</h1>

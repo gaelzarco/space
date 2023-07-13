@@ -1,12 +1,12 @@
 import { type FC, type HTMLAttributes } from 'react'
-import { Session, getServerSession } from 'next-auth'
-import { GET } from '@/app/api/auth/[...nextauth]/route'
+import { type Session, getServerSession } from 'next-auth'
+import { authOptions } from '@/app/api/auth/[...nextauth]/route'
 import Link from 'next/link'
 import Image from 'next/image'
 import { cn } from '@/lib/utils'
 
-import Button from '@/components/ui/button'
 import ThemeSwitcher from '@/components/themeswitch'
+import SignOutButton from '@/components/signoutbutton'
 
 interface NavBarProps extends HTMLAttributes<HTMLDivElement> {}
 
@@ -16,12 +16,12 @@ const DashNavBar: FC<NavBarProps> = async ({
   onClick,
   ...props
 }) => {
-  const session: Session | null = await getServerSession(GET)
+  const session: Session | null = await getServerSession(authOptions)
 
   return (
     <nav
       className={cn(
-        'inline-flex min-w-full h-[80px] items-center justify-between border-b border-neutral-200 dark:border-neutral-800 text-black dark:text-white p-4 mx-2',
+        'inline-flex min-w-full h-[80px] items-center justify-between border-b border-neutral-200 dark:border-neutral-800 text-black dark:text-white p-4',
         className
       )}
       {...props}
@@ -38,20 +38,27 @@ const DashNavBar: FC<NavBarProps> = async ({
       </div>
 
       {!!session && (
-        <Button className="inline-flex items-center min-w-[100px] justify-self-end">
-          <div className="flex flex-col w-full h-full">
-            <p className="font-semibold dark:text-white">{session.user.name}</p>
+        <>
+          <div className="inline-flex items-center">
+            <div className="flex flex-col h-full mr-2">
+              <p className="font-semibold dark:text-white">
+                {session.user.name}
+              </p>
+            </div>
+
+            <div>
+              <Image
+                className="rounded-full"
+                src={session.user.image as string}
+                width={30}
+                height={30}
+                alt="Profile"
+              />
+            </div>
+
+            <SignOutButton className="bg-opacity-0 dark:bg-opacity-0 text-neutral-200 dark:text-neutral-300 min-w-[25px]" />
           </div>
-          <div>
-            <Image
-              className="rounded-full"
-              src={session.user.image as string}
-              width={30}
-              height={30}
-              alt="Profile"
-            />
-          </div>
-        </Button>
+        </>
       )}
     </nav>
   )
