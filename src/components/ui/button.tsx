@@ -1,10 +1,10 @@
-import type { ButtonHTMLAttributes, FC, MouseEvent, ReactNode } from 'react'
+'use client'
+
+import type { ButtonHTMLAttributes, FC } from 'react'
 import { cn } from '@/lib/utils'
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  children: ReactNode
-  isLoading: boolean
-  onClick: (e: MouseEvent<HTMLButtonElement>) => void
+  isLoading?: boolean
 }
 
 const Button: FC<ButtonProps> = ({
@@ -17,16 +17,14 @@ const Button: FC<ButtonProps> = ({
   return (
     <button
       className={cn(
-        'inline-flex items-center min-w-[100px] justify-center bg-neutral-800 hover:bg-neutral-700 text-white py-2 px-6 m-2 rounded-xl transition-all duration-200 ease-in-out',
+        'inline-flex items-center min-w-[100px] justify-center bg-neutral-200 hover:bg-neutral-300 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:text-white py-2 px-6 m-2 rounded-full transition-all duration-200 ease-in-out',
         {
-          'cursor-not-allowed animate-pulse bg-white text-black hover:bg-white':
+          'cursor-not-allowed animate-pulse bg-black text-white dark:bg-white dark:text-black':
             isLoading,
         },
         className
       )}
-      onClick={(e) => {
-        onClick(e)
-      }}
+      onClick={onClick}
       {...props}
     >
       <div className="inline-flex mx-2 items-center justify-center">
