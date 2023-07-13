@@ -3,6 +3,8 @@ import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
 import { Inter } from 'next/font/google'
 
+import Providers from '@/app/providers'
+
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -13,7 +15,11 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body
+        className={`${inter.className} min-h-screen max-w-7xl mx-auto bg-neutral-100 dark:bg-neutral-950 dark:text-white transition-all duration-200 ease-in-out`}
+      >
+        <Providers>{children}</Providers>
+      </body>
     </html>
   )
 }
