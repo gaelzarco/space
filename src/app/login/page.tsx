@@ -4,6 +4,7 @@ export const runtime = 'edge'
 
 import { type FC, useState } from 'react'
 import { signIn } from 'next-auth/react'
+
 import Button from '@/components/ui/button'
 
 type PageProps = {}
