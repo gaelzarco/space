@@ -1,4 +1,4 @@
-import NextAuth from 'next-auth'
+import NextAuth, { type NextAuthOptions } from 'next-auth'
 import GitHubProvider from 'next-auth/providers/github'
 import GoogleProvider from 'next-auth/providers/google'
 import { UpstashRedisAdapter } from '@next-auth/upstash-redis-adapter'
@@ -28,8 +28,11 @@ function getGoogleCredentials() {
   }
 }
 
-const handler = NextAuth({
+export const authOptions: NextAuthOptions = {
   adapter: UpstashRedisAdapter(db),
+  session: {
+    strategy: 'jwt',
+  },
   providers: [
     GitHubProvider({
       clientId: getGithubCredential().clientId,
@@ -40,27 +43,29 @@ const handler = NextAuth({
       clientSecret: getGoogleCredentials().clientSecret,
     }),
   ],
-  session: {
-    strategy: 'jwt',
-  },
   pages: {
     signIn: '/login',
   },
   callbacks: {
     async jwt({ token, user }) {
-      const dbUser = (await db.get(`user: ${token.id}`)) as User | null
+      const dbUser: User | null = await db.get(`user: ${token.id}`)
 
       if (!dbUser) {
-        token.id = user.id
+        if (user) {
+          token.id = user!.id
+        }
+
         return token
       }
 
-      return {
-        id: dbUser.id,
-        name: dbUser.name,
-        email: dbUser.email,
-        image: dbUser.image,
+      if (dbUser) {
+        token.name = dbUser.name
+        token.email = dbUser.email
+        token.image = dbUser.image
+        token.id = dbUser.id
       }
+
+      return token
     },
 
     async session({ session, token }) {
@@ -75,9 +80,11 @@ const handler = NextAuth({
     },
 
     redirect() {
-      return '/dashboard'
+      return '/'
     },
   },
-})
+}
+
+const handler = NextAuth(authOptions)
 
 export { handler as GET, handler as POST }
