@@ -34,10 +34,10 @@ const Login: FC<PageProps> = ({}) => {
   }
 
   return (
-    <div className="flex min-h-screen flex-col items-center p-24">
-      <div className="flex flex-col m-2">
-        <h1 className="font-bold text-2xl">Login into your SSpace account</h1>
-        <div className="flex flex-col p-2">
+    <div className="flex min-h-screen flex-col items-center justify-center p-24">
+      <div className="flex flex-col p-20  border bg-white dark:bg-black border-neutral-200 dark:border-neutral-900 rounded-xl">
+        <h1 className="font-bold text-2xl">Login into your sSpace account</h1>
+        <div className="flex flex-col p-2 mt-8">
           <Button isLoading={isGitHubLoading} onClick={loginWithGithub}>
             <svg
               width="20"

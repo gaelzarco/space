@@ -1,11 +1,8 @@
-import Image from 'next/image'
-
 import LandingNavBar from '@/components/landingnavbar'
-import GlobePNG from '@/static/globe.png'
 
 export default function Home() {
   return (
-    <main className="flex flex-col h-full w-full items-center content-center justify-center">
+    <main className="flex flex-col h-full w-full max-w-7xl items-center content-center justify-center mx-auto">
       <LandingNavBar />
 
       <div className="flex flex-col w-full h-full mx-auto items-center my-20">
@@ -35,18 +32,10 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="flex flex-col items-center w-full mt-20 my-10">
+        <div className="flex flex-col items-center w-full my-10">
           <h1 className="z-[-10] absolute text-[10em] font-extrabold text-neutral-200 dark:text-neutral-900">
             Fast and Secure
           </h1>
-          <Image
-            className="-mt-12 mb-12"
-            src={GlobePNG}
-            width={800}
-            height={800}
-            alt="Globe PNG"
-            priority
-          />
         </div>
       </div>
     </main>

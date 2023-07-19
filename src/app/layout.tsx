@@ -9,14 +9,14 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'SSpace',
-  description: 'The real-time chat app built for the edge',
+  description: 'The real-time chat app built for developers',
 }
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <body
-        className={`${inter.className} min-h-screen max-w-7xl mx-auto bg-neutral-100 dark:bg-neutral-950 dark:text-white transition-all duration-200 ease-in-out`}
+        className={`${inter.className} min-h-screen min-w-full max-w-7xl mx-auto bg-neutral-100 dark:bg-neutral-950 dark:text-white transition-all duration-200 ease-in-out`}
       >
         <Providers>{children}</Providers>
       </body>

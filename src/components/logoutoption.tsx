@@ -1,19 +1,16 @@
 'use client'
 
-import { ButtonHTMLAttributes, FC, useState } from 'react'
+import { type FC, type HTMLAttributes, useState } from 'react'
 import { signOut } from 'next-auth/react'
 
-import Button from '@/components/ui/button'
+interface LogOutOptionProps extends HTMLAttributes<HTMLDivElement> {}
 
-interface SignOutButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {}
-
-const SignOutButton: FC<SignOutButtonProps> = ({ ...props }) => {
+const LogoutOption: FC<LogOutOptionProps> = ({ ...props }) => {
   const [isSigningOut, setIsSigningOut] = useState<boolean>(false)
 
   return (
-    <Button
+    <div
       {...props}
-      isLoading={isSigningOut}
       onClick={async () => {
         setIsSigningOut(true)
         try {
@@ -26,8 +23,8 @@ const SignOutButton: FC<SignOutButtonProps> = ({ ...props }) => {
       }}
     >
       {isSigningOut ? 'Signing out...' : 'Sign out'}
-    </Button>
+    </div>
   )
 }
 
-export default SignOutButton
+export default LogoutOption
