@@ -10,11 +10,11 @@ import DashSideBar from '@/components/dashsidebar'
 
 export const metadata: Metadata = {
   title: 'Dashboard',
-  description: 'SSpace dashboard',
+  description: 'SSpace dashboard'
 }
 
 export default async function RootLayout({
-  children,
+  children
 }: {
   children: ReactNode
 }) {
@@ -22,23 +22,23 @@ export default async function RootLayout({
 
   if (!session)
     return (
-      <div className="min-h-screen min-w-7xl max-w-7xl mx-auto flex flex-col content-center justify-center items-center">
-        <p className="font-bold text-2xl">Login to view your dashboard</p>
+      <div className='flex flex-col w-full mx-auto content-center justify-center items-center flex-grow'>
+        <p className='font-bold text-2xl'>Login to view your dashboard</p>
         <div>
-          <Link href="/login">
-            <Button className="my-10">Login</Button>
+          <Link href='/login'>
+            <Button className='my-10'>Login</Button>
           </Link>
         </div>
       </div>
     )
 
   return (
-    <div className="min-h-screen min-w-7xl max-w-7xl mx-auto overflow-y-hidden">
+    <main className='flex flex-col w-full mx-auto flex-grow'>
       <DashNavBar />
-      <main className="cursor-default flex flex-row min-w-full min-h-full max-h-screen">
+      <div className='flex flex-row w-full cursor-default flex-grow'>
         <DashSideBar />
         {children}
-      </main>
-    </div>
+      </div>
+    </main>
   )
 }

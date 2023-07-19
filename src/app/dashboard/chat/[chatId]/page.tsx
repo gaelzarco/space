@@ -1,6 +1,6 @@
 import { type FC } from 'react'
 
-import { fetchRedis } from '@/helpers/fetchredis'
+// import { fetchRedis } from '@/helpers/fetchredis'
 
 interface ConversationProps {
   params: {
@@ -8,7 +8,7 @@ interface ConversationProps {
   }
 }
 
-type Message = {}
+// type Message = {}
 
 const Conversation: FC<ConversationProps> = async ({ params }) => {
   return <h1>{params.chatId}</h1>
