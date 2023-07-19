@@ -20,14 +20,14 @@ const LandingNavBar: FC<NavBarProps> = async ({
   return (
     <nav
       className={cn(
-        'inline-flex min-w-full h-[80px] items-center justify-between border-b border-neutral-200 dark:border-neutral-800 text-black dark:text-white p-4',
+        'inline-flex min-w-full h-[80px] items-center justify-between border-b border-neutral-200 dark:border-neutral-800 text-black dark:text-white',
         className
       )}
       {...props}
     >
       <Link
         href="/"
-        className="min-w-[100px] py-2 px-6 m-2 font-bold justify-self-start"
+        className="min-w-[100px] font-bold justify-self-start hover:text-neutral-600 dark:text-white dark:hover:text-neutral-300 p-2 m-2 ml-6 transition-all ease-in-out duration-200"
       >
         SSpace
       </Link>
@@ -38,11 +38,11 @@ const LandingNavBar: FC<NavBarProps> = async ({
 
       {!session ? (
         <Link href="/login" className="justify-self-end">
-          <Button>Login</Button>
+          <Button className="m-0">Login</Button>
         </Link>
       ) : (
         <Link href="/dashboard" className="justify-self-end">
-          <Button>Dashboard</Button>
+          <Button className="m-0">Dashboard</Button>
         </Link>
       )}
     </nav>

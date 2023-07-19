@@ -3,10 +3,10 @@ import type { ReactNode } from 'react'
 import { type Session, getServerSession } from 'next-auth'
 import { authOptions } from '@/app/api/auth/[...nextauth]/route'
 
-import DashNavBar from '@/components/dashnavbar'
 import Link from 'next/link'
 import Button from '@/components/ui/button'
-import ThemedPing from '@/components/ui/themedping'
+import DashNavBar from '@/components/dashnavbar'
+import DashSideBar from '@/components/dashsidebar'
 
 export const metadata: Metadata = {
   title: 'Dashboard',
@@ -33,9 +33,12 @@ export default async function RootLayout({
     )
 
   return (
-    <div className="min-h-screen min-w-7xl max-w-7xl mx-auto">
+    <div className="min-h-screen min-w-7xl max-w-7xl mx-auto overflow-y-hidden">
       <DashNavBar />
-      {children}
+      <main className="cursor-default flex flex-row min-w-full min-h-full max-h-screen">
+        <DashSideBar />
+        {children}
+      </main>
     </div>
   )
 }
