@@ -4,11 +4,11 @@ import Button from '@/components/ui/button'
 
 const Dashboard: FC = () => {
   return (
-    <div className="flex flex-col items-center content-center justify-center w-full min-h-[93.8vh] text-sm">
-      <h1 className="text-lg mb-2 text-neutral-400 dark:text-neutral-500">
+    <div className='flex flex-col w-full items-center content-center justify-center text-sm flex-grow'>
+      <h1 className='text-lg mb-2 text-neutral-400 dark:text-neutral-500'>
         Start a conversation
       </h1>
-      <Button className="mx-0">New</Button>
+      <Button className='mx-0'>New</Button>
     </div>
   )
 }
