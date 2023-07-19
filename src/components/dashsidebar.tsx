@@ -1,21 +1,10 @@
-'use client'
-
-import { type FC, useState } from 'react'
+import { type FC } from 'react'
 import Link from 'next/link'
 
 import Button from '@/components/ui/button'
 import { ChatBubbleIcon } from '@radix-ui/react-icons'
 
-type Conversation = {
-  avatar: string
-  name: string
-  lastMessage: string
-  lastMessageTime: string
-}
-
 const DashSideBar: FC = () => {
-  const [conversations, setConversations] = useState<Conversation[]>([])
-
   return (
     <div className="flex flex-col items-center min-w-[400px] min-h-[93.8vh] border-r border-neutral-200 dark:border-neutral-800">
       <div className="flex flex-row text-sm items-center justify-between w-full py-4 px-3 border-b border-neutral-200 dark:border-neutral-800">
@@ -31,28 +20,9 @@ const DashSideBar: FC = () => {
         </Button>
       </div>
 
-      {conversations.length > 1 ? (
-        conversations.map((conversation) => (
-          <div className="flex flex-row items-center justify-between w-full py-4 px-3 border-b border-neutral-200 dark:border-neutral-800">
-            <div className="flex flex-row items-center">
-              <img
-                src={conversation.avatar}
-                alt="avatar"
-                className="w-10 h-10 rounded-full mr-2"
-              />
-              <div className="flex flex-col">
-                <p className="font-semibold">{conversation.name}</p>
-                <p className="text-sm">{conversation.lastMessage}</p>
-              </div>
-            </div>
-            <p className="text-sm">{conversation.lastMessageTime}</p>
-          </div>
-        ))
-      ) : (
-        <div className="flex flex-row items-center justify-center w-full h-full text-sm text-neutral-400 dark:text-neutral-500">
-          <p>No conversations yet</p>
-        </div>
-      )}
+      <div className="flex flex-row items-center justify-center w-full h-full text-sm text-neutral-400 dark:text-neutral-500">
+        <p>No conversations yet</p>
+      </div>
     </div>
   )
 }
