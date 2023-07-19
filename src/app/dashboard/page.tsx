@@ -7,7 +7,7 @@ type PageProps = {}
 
 const Dashboard: FC<PageProps> = ({}) => {
   return (
-    <main className="flex flex-col items-center min-w-full min-h-full">
+    <main className="cursor-default flex flex-col items-center min-w-full min-h-full">
       <div className="inline-flex items-center justify-between w-full h-full my-10">
         <h1 className="text-4xl font-bold">Conversations</h1>
         <Button className="mx-0">

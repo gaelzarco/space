@@ -33,6 +33,9 @@ export const authOptions: NextAuthOptions = {
   session: {
     strategy: 'jwt',
   },
+  pages: {
+    signIn: '/login',
+  },
   providers: [
     GitHubProvider({
       clientId: getGithubCredential().clientId,
@@ -43,9 +46,6 @@ export const authOptions: NextAuthOptions = {
       clientSecret: getGoogleCredentials().clientSecret,
     }),
   ],
-  pages: {
-    signIn: '/login',
-  },
   callbacks: {
     async jwt({ token, user }) {
       const dbUser: User | null = await db.get(`user: ${token.id}`)
@@ -78,7 +78,6 @@ export const authOptions: NextAuthOptions = {
 
       return session
     },
-
     redirect() {
       return '/'
     },

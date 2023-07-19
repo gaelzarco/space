@@ -25,7 +25,7 @@ const ThemeSwitcher: FC<ButtonHTMLAttributes<HTMLButtonElement>> = ({
 
   return (
     <Button
-      className={`${className} bg-opacity-0 dark:bg-opacity-0 text-neutral-600 dark:text-neutral-500 min-w-[25px]`}
+      className={`${className} w-2 text-neutral-700 dark:text-neutral-200 min-w-[25px]`}
       onClick={toggleTheme}
     >
       {theme === 'light' ? <SunIcon /> : <MoonIcon />}

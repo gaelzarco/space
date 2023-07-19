@@ -19,7 +19,7 @@ const Button: FC<ButtonProps> = ({
       className={cn(
         'inline-flex items-center min-w-[100px] justify-center bg-neutral-200 hover:bg-neutral-300 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:text-white py-2 px-6 m-2 rounded-full transition-all duration-200 ease-in-out',
         {
-          'cursor-not-allowed animate-pulse bg-black text-white dark:bg-white dark:text-black':
+          'cursor-progress animate-pulse bg-black text-white dark:bg-white dark:text-black':
             isLoading,
         },
         className

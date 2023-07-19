@@ -5,7 +5,7 @@ import GlobePNG from '@/static/globe.png'
 
 export default function Home() {
   return (
-    <main className="flex flex-col h-full w-full items-center content-center justify-center">
+    <main className="flex flex-col h-full w-full max-w-7xl items-center content-center justify-center mx-auto">
       <LandingNavBar />
 
       <div className="flex flex-col w-full h-full mx-auto items-center my-20">
