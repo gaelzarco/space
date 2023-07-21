@@ -22,7 +22,7 @@ export default async function RootLayout({
 
   if (!session)
     return (
-      <div className='flex flex-col w-full mx-auto content-center justify-center items-center flex-grow'>
+      <div className='layout-1800 content-center justify-center items-center'>
         <p className='font-bold text-2xl'>Login to view your dashboard</p>
         <div>
           <Link href='/login'>
@@ -33,9 +33,9 @@ export default async function RootLayout({
     )
 
   return (
-    <main className='flex flex-col w-full mx-auto flex-grow'>
+    <main className='layout-1800'>
       <DashNavBar />
-      <div className='flex flex-row w-full cursor-default flex-grow'>
+      <div className='flex flex-row w-full flex-grow cursor-default'>
         <DashSideBar />
         {children}
       </div>
