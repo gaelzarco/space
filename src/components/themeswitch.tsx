@@ -7,7 +7,7 @@ import Button from '@/components/ui/button'
 import { SunIcon, MoonIcon } from '@radix-ui/react-icons'
 
 const ThemeSwitcher: FC<ButtonHTMLAttributes<HTMLButtonElement>> = ({
-  className,
+  className
 }) => {
   const [mounted, setMounted] = useState(false)
   const { theme, setTheme } = useTheme()

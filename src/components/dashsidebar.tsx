@@ -1,10 +1,18 @@
 import { type FC } from 'react'
 import Link from 'next/link'
+import { type Session, getServerSession } from 'next-auth'
+import { authOptions } from '@/app/api/auth/[...nextauth]/route'
+import { fetchRedis } from '@/helpers/fetchredis'
 
 import Button from '@/components/ui/button'
 import { ChatBubbleIcon } from '@radix-ui/react-icons'
 
-const DashSideBar: FC = () => {
+const DashSideBar: FC = async () => {
+  const session: Session | null = await getServerSession(authOptions)
+  if (!session) return null
+
+  const chats = await fetchRedis('get', `user:${session.user.id}:chats`)
+
   return (
     <div className='flex flex-col items-center min-w-[400px] border-r border-neutral-200 dark:border-neutral-800 overflow-y-scroll flex-grow'>
       <div className='flex flex-row text-sm items-center justify-between w-full py-2 px-3 border-b border-neutral-200 dark:border-neutral-800'>
@@ -14,15 +22,25 @@ const DashSideBar: FC = () => {
         >
           <h1>Chats</h1>
         </Link>
-        <Button className='mx-0'>
-          <ChatBubbleIcon className='mr-2' />
+        <Button className='m-0'>
           New
+          <ChatBubbleIcon className='ml-2' />
         </Button>
       </div>
 
-      <div className='flex flex-col items-center justify-center w-full text-sm text-neutral-400 dark:text-neutral-500 flex-grow'>
-        <p>No conversations yet</p>
-      </div>
+      {!!chats ? (
+        chats.map((chat: any, i: number) => {
+          return (
+            <div key={i}>
+              <p>{chat.name}</p>
+            </div>
+          )
+        })
+      ) : (
+        <div className='flex flex-col items-center justify-center w-full text-sm text-neutral-400 dark:text-neutral-500 flex-grow'>
+          <p>No conversations yet</p>
+        </div>
+      )}
     </div>
   )
 }
