@@ -53,7 +53,7 @@ const AddFriendsDialog: FC = () => {
         <DialogHeader>
           <DialogTitle>Add a friend</DialogTitle>
           <DialogDescription>
-            Enter an email address and we'll see if they're on sSpace.
+            Enter an email address and we&apos;ll see if they&apos;re on sSpace.
           </DialogDescription>
         </DialogHeader>
 
