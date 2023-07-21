@@ -20,7 +20,7 @@ export default async function RootLayout({
 }) {
   const session: Session | null = await getServerSession(authOptions)
 
-  if (!session)
+  if (!session) {
     return (
       <div className='layout-1800 content-center justify-center items-center'>
         <p className='font-bold text-2xl'>Login to view your dashboard</p>
@@ -31,6 +31,7 @@ export default async function RootLayout({
         </div>
       </div>
     )
+  }
 
   return (
     <main className='layout-1800'>
