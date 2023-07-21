@@ -1,17 +1,25 @@
 import { type FC } from 'react'
+import { type Session, getServerSession } from 'next-auth'
+import { authOptions } from '@/app/api/auth/[...nextauth]/route'
+import { fetchRedis } from '@/helpers/fetchredis'
 
-// import { fetchRedis } from '@/helpers/fetchredis'
-
-interface ConversationProps {
+interface ChatProps {
   params: {
     chatId: string
   }
 }
 
-// type Message = {}
+const Chat: FC<ChatProps> = async ({ params }) => {
+  const session: Session | null = await getServerSession(authOptions)
+  if (!session) return null
 
-const Conversation: FC<ConversationProps> = async ({ params }) => {
-  return <h1>{params.chatId}</h1>
+  const messages = await fetchRedis(
+    'get',
+    `user:${session.user.id}:chat:${params.chatId}`
+  )
+  console.log(messages)
+
+  return <div className='flex flex-col justify-end content-end w-full'></div>
 }
 
-export default Conversation
+export default Chat

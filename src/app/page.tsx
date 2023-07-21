@@ -2,7 +2,7 @@ import LandingNavBar from '@/components/landingnavbar'
 
 export default function Home() {
   return (
-    <main className='flex flex-col w-full items-center content-center justify-center mx-auto flex-grow'>
+    <main className='flex flex-col max-w-[1800px] w-full mx-auto items-center content-center justify-center flex-grow'>
       <LandingNavBar />
 
       <div className='flex flex-col w-full mx-auto items-center my-20 flex-grow'>
