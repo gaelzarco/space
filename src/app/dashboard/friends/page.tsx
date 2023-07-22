@@ -12,7 +12,7 @@ const Friends: FC = async () => {
   const friends = await getFriendsByUserId(session.user.id)
 
   return (
-    <div className='flex flex-col items-center content-center justify-center w-full text-sm flex-grow'>
+    <>
       {friends.length > 1 ? (
         <h1 className='text-lg mb-2 text-neutral-400 dark:text-neutral-500'>
           You have friends!
@@ -24,7 +24,7 @@ const Friends: FC = async () => {
       )}
 
       <AddFriendsDialog />
-    </div>
+    </>
   )
 }
 

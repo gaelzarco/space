@@ -19,7 +19,7 @@ const Chat: FC<ChatProps> = async ({ params }) => {
   )
   console.log(messages)
 
-  return <div className='flex flex-col justify-end content-end w-full'></div>
+  return <>{params.chatId}</>
 }
 
 export default Chat
