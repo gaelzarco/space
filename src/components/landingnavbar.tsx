@@ -5,7 +5,8 @@ import Link from 'next/link'
 import { cn } from '@/lib/utils'
 
 import Button from '@/components/ui/button'
-import ThemeSwitcher from '@/components/themeswitch'
+import ThemeSwitch from '@/components/themeswitch'
+import NavBarLogo from './navbarlogo'
 
 interface NavBarProps extends HTMLAttributes<HTMLDivElement> {}
 
@@ -25,18 +26,20 @@ const LandingNavBar: FC<NavBarProps> = async ({
       )}
       {...props}
     >
-      <Link
-        href='/'
-        className='min-w-[120px] font-bold justify-self-start hover:text-neutral-600 dark:text-white dark:hover:text-neutral-300 transition-all ease-in-out duration-200'
-      >
-        SSpace
-      </Link>
-
-      <div className='inline-flex min-w-[120px] items-center content-center justify-center'>
-        <ThemeSwitcher />
+      <div className='w-full'>
+        <Link
+          href='/'
+          className='font-bold hover:text-neutral-600 dark:text-white dark:hover:text-neutral-300 transition-all ease-in-out duration-200'
+        >
+          <NavBarLogo />
+        </Link>
       </div>
 
-      <div className='min-w-[120px] justify-self-end'>
+      <div className='inline-flex w-full items-center content-center justify-center justify-self-center'>
+        <ThemeSwitch />
+      </div>
+
+      <div className='w-full flex justify-self-end justify-end'>
         {!session ? (
           <Link href='/login'>
             <Button className='m-0'>Login</Button>

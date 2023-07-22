@@ -6,7 +6,7 @@ import { useTheme } from 'next-themes'
 import Button from '@/components/ui/button'
 import { SunIcon, MoonIcon } from '@radix-ui/react-icons'
 
-const ThemeSwitcher: FC<ButtonHTMLAttributes<HTMLButtonElement>> = ({
+const ThemeSwitch: FC<ButtonHTMLAttributes<HTMLButtonElement>> = ({
   className
 }) => {
   const [mounted, setMounted] = useState(false)
@@ -25,7 +25,7 @@ const ThemeSwitcher: FC<ButtonHTMLAttributes<HTMLButtonElement>> = ({
 
   return (
     <Button
-      className={`${className} text-neutral-700 dark:text-neutral-200`}
+      className={`${className} text-neutral-700 dark:text-neutral-200 m-0`}
       onClick={toggleTheme}
     >
       {theme === 'light' ? <SunIcon /> : <MoonIcon />}
@@ -33,4 +33,4 @@ const ThemeSwitcher: FC<ButtonHTMLAttributes<HTMLButtonElement>> = ({
   )
 }
 
-export default ThemeSwitcher
+export default ThemeSwitch

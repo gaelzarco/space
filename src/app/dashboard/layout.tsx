@@ -9,8 +9,8 @@ import DashNavBar from '@/components/dashnavbar'
 import DashSideBar from '@/components/dashsidebar'
 
 export const metadata: Metadata = {
-  title: 'Dashboard',
-  description: 'SSpace dashboard'
+  title: 'sSpace',
+  description: `sSpace | See what your friend's are up to`
 }
 
 export default async function RootLayout({

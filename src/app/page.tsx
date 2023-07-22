@@ -6,8 +6,8 @@ export default function Home() {
       <LandingNavBar />
 
       <div className='flex flex-col w-full mx-auto items-center my-20 flex-grow'>
-        <h1 className='text-8xl font-bold text-center'>Your real-time chat</h1>
-        <h1 className='text-8xl font-bold text-center'>application</h1>
+        <h1 className='text-8xl font-bold text-center'>Real-time chat app</h1>
+        <h1 className='text-8xl font-bold text-center'>for developers</h1>
 
         <div className='flex flex-row w-full items-center justify-center my-10'>
           <div className='mt-10 flex flex-row items-center w-[95%] h-[180px] justify-between'>

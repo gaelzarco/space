@@ -8,7 +8,7 @@ import Providers from '@/app/providers'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'SSpace',
+  title: 'sSpace',
   description: 'The real-time chat app built for developers'
 }
 

@@ -44,7 +44,7 @@ const AddFriendsDialog: FC = () => {
 
   return (
     <Dialog>
-      <DialogTrigger className='inline-flex items-center min-w-[100px] h-8 justify-center content-center bg-neutral-200 hover:bg-neutral-300 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:text-white px-6 py-5 m-0 rounded-full transition-all duration-200 ease-in-out'>
+      <DialogTrigger className='inline-flex items-center min-w-[142px] h-8 justify-center content-center bg-neutral-200 hover:bg-neutral-300 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:text-white px-6 py-5 m-0 rounded-full transition-all duration-200 ease-in-out'>
         Add
         <PersonIcon className='ml-2' />
       </DialogTrigger>

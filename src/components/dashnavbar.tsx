@@ -15,6 +15,7 @@ import {
 } from '@/components/ui/dropdownmenu'
 import ThemeSwitcher from '@/components/themeswitch'
 import LogoutOption from '@/components/logoutoption'
+import NavBarLogo from './navbarlogo'
 
 import { CaretDownIcon } from '@radix-ui/react-icons'
 import Button from '@/components/ui/button'
@@ -41,19 +42,19 @@ const DashNavBar: FC<NavBarProps> = async ({
         href='/'
         className='min-w-[100px] font-bold justify-self-start hover:text-neutral-600 dark:text-white dark:hover:text-neutral-300 transition-all ease-in-out duration-200'
       >
-        SSpace
+        <NavBarLogo />
       </Link>
 
       {!!session && (
         <div className='inline-flex items-center content-center justify-self-end'>
           <ThemeSwitcher />
 
-          <Link href='/dashboard/friends' className='mr-2'>
+          <Link href='/dashboard/friends' className='ml-2'>
             <Button className='text-sm m-0'>Friends</Button>
           </Link>
 
           <DropdownMenu>
-            <DropdownMenuTrigger className='inline-flex items-center justify-center rounded-full hover:text-neutral-600 dark:text-white dark:hover:text-neutral-300 py-2 px-2 ml-6 transition-all ease-in-out duration-200'>
+            <DropdownMenuTrigger className='inline-flex min-w-[142px] items-center justify-center rounded-full hover:text-neutral-600 dark:text-white dark:hover:text-neutral-300 h-8 py-5 px-6 m-2 transition-all duration-200 ease-in-out'>
               <div className='inline-flex items-center content-center justify-center'>
                 <CaretDownIcon className='w-4 h-4 mr-2' />
 
