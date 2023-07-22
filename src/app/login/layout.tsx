@@ -6,6 +6,6 @@ export const metadata: Metadata = {
   description: `Create an account or login to sSpace`
 }
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+export default function Layout({ children }: { children: ReactNode }) {
   return <div className='layout-1800'>{children}</div>
 }

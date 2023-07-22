@@ -2,22 +2,18 @@ import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
 import { type Session, getServerSession } from 'next-auth'
 import { authOptions } from '@/app/api/auth/[...nextauth]/route'
-
 import Link from 'next/link'
+
 import Button from '@/components/ui/button'
 import DashNavBar from '@/components/dashnavbar'
 import DashSideBar from '@/components/dashsidebar'
 
 export const metadata: Metadata = {
   title: 'sSpace',
-  description: `sSpace | See what your friend's are up to`
+  description: `sSpace | Dashboard`
 }
 
-export default async function RootLayout({
-  children
-}: {
-  children: ReactNode
-}) {
+export default async function Layout({ children }: { children: ReactNode }) {
   const session: Session | null = await getServerSession(authOptions)
 
   if (!session) {
