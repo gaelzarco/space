@@ -2,6 +2,7 @@ import { type FC } from 'react'
 import { type Session, getServerSession } from 'next-auth'
 import { authOptions } from '@/app/api/auth/[...nextauth]/route'
 import { getFriendsByUserId } from '@/helpers/getFriendsByUserId'
+// import { fetchRedis } from '@/helpers/fetchredis'
 
 import AddFriendsDialog from '@/components/addfriendsdialog'
 
@@ -10,6 +11,23 @@ const Friends: FC = async () => {
   if (!session) return null
 
   const friends = await getFriendsByUserId(session.user.id)
+
+  // const incomingSenderIds = (await fetchRedis(
+  //   'smembers',
+  //   `user:${session.user.id}:incoming_friend_requests`
+  // )) as string[]
+
+  // const incomingFriendRequests = await Promise.all(
+  //   incomingSenderIds.map(async (senderId) => {
+  //     const sender = (await fetchRedis('get', `user:${senderId}`)) as string
+  //     const senderParsed = JSON.parse(sender) as User
+
+  //     return {
+  //       senderId,
+  //       senderEmail: senderParsed.email,
+  //     }
+  //   })
+  // )
 
   return (
     <>
