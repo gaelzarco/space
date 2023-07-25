@@ -30,14 +30,24 @@ export async function POST(req: NextRequest) {
     if (friendId === session.user.id)
       return new Response('Make a friend besides yourself 🤡', { status: 400 })
 
-    const alreadyFriends = (await fetchRedis(
+    const alreadySentFriendRequest = (await fetchRedis(
       'sismember',
       `user:${friendId}:incoming_friend_requests`,
       session.user.id
     )) as true | false
 
-    if (alreadyFriends)
-      return new Response('You are already friends with this person', {
+    if (alreadySentFriendRequest)
+      return new Response('You already sent a friend request', {
+        status: 400
+      })
+
+    const friends = await fetchRedis(
+      'smembers',
+      `user:${session.user.id}:friends`
+    )
+
+    if (friends && friends.includes(`${friendId}`))
+      return new Response('You are already friends', {
         status: 400
       })
 
