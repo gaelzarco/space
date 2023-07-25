@@ -50,7 +50,7 @@ const DashNavBar: FC<NavBarProps> = async ({
           <ThemeSwitcher />
 
           <Link href='/dashboard/friends' className='ml-2'>
-            <Button className='text-sm m-0'>Friends</Button>
+            <Button className='text-sm m-0'>Requests</Button>
           </Link>
 
           <DropdownMenu>

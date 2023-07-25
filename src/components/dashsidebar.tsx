@@ -4,8 +4,7 @@ import { type Session, getServerSession } from 'next-auth'
 import { authOptions } from '@/app/api/auth/[...nextauth]/route'
 import { fetchRedis } from '@/helpers/fetchredis'
 
-import Button from '@/components/ui/button'
-import { ChatBubbleIcon } from '@radix-ui/react-icons'
+import AddFriendsDialog from './addfriendsdialog'
 
 const DashSideBar: FC = async () => {
   const session: Session | null = await getServerSession(authOptions)
@@ -20,12 +19,9 @@ const DashSideBar: FC = async () => {
           href='/dashboard'
           className='text-2xl font-bold justify-self-start hover:text-neutral-600 dark:text-white dark:hover:text-neutral-300 p-2 m-2 transition-all ease-in-out duration-200'
         >
-          <h1>Chats</h1>
+          <h1>Friends</h1>
         </Link>
-        <Button className='m-0'>
-          New
-          <ChatBubbleIcon className='ml-2' />
-        </Button>
+        <AddFriendsDialog />
       </div>
 
       {!!chats ? (

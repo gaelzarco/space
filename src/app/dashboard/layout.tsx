@@ -1,10 +1,9 @@
-import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
+import type { Metadata } from 'next'
+import { notFound } from 'next/navigation'
 import { type Session, getServerSession } from 'next-auth'
 import { authOptions } from '@/app/api/auth/[...nextauth]/route'
-import Link from 'next/link'
 
-import Button from '@/components/ui/button'
 import DashNavBar from '@/components/dashnavbar'
 import DashSideBar from '@/components/dashsidebar'
 
@@ -15,19 +14,7 @@ export const metadata: Metadata = {
 
 export default async function Layout({ children }: { children: ReactNode }) {
   const session: Session | null = await getServerSession(authOptions)
-
-  if (!session) {
-    return (
-      <div className='layout-1800 content-center justify-center items-center'>
-        <p className='font-bold text-2xl'>Login to view your dashboard</p>
-        <div>
-          <Link href='/login'>
-            <Button className='my-10'>Login</Button>
-          </Link>
-        </div>
-      </div>
-    )
-  }
+  if (!session) return notFound()
 
   return (
     <main className='layout-1800'>
