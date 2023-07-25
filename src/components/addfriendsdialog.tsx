@@ -43,7 +43,6 @@ const AddFriendsDialog: FC = () => {
       })
 
       if (res.status === 200) {
-        setEmail('')
         setError(null)
         return setSuccess('Friend request sent!')
       } else {

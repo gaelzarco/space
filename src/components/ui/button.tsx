@@ -24,7 +24,7 @@ const Button: FC<ButtonProps> = ({
         },
         className
       )}
-      onClick={onClick}
+      onClick={!isLoading ? onClick : () => {}}
       {...props}
     >
       <div className='inline-flex mx-2 items-center justify-center'>

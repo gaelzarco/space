@@ -2,15 +2,12 @@ import { type FC } from 'react'
 import Link from 'next/link'
 import { type Session, getServerSession } from 'next-auth'
 import { authOptions } from '@/app/api/auth/[...nextauth]/route'
-import { fetchRedis } from '@/helpers/fetchredis'
 
 import AddFriendsDialog from './addfriendsdialog'
 
 const DashSideBar: FC = async () => {
   const session: Session | null = await getServerSession(authOptions)
   if (!session) return null
-
-  const chats = await fetchRedis('get', `user:${session.user.id}:chats`)
 
   return (
     <div className='flex flex-col items-center min-w-[400px] border-r border-neutral-200 dark:border-neutral-800 overflow-y-scroll flex-grow'>
@@ -24,19 +21,9 @@ const DashSideBar: FC = async () => {
         <AddFriendsDialog />
       </div>
 
-      {!!chats ? (
-        chats.map((chat: any, i: number) => {
-          return (
-            <div key={i}>
-              <p>{chat.name}</p>
-            </div>
-          )
-        })
-      ) : (
-        <div className='flex flex-col items-center justify-center w-full text-sm text-neutral-400 dark:text-neutral-500 flex-grow'>
-          <p>No conversations yet</p>
-        </div>
-      )}
+      <div className='flex flex-col items-center justify-center w-full text-neutral-400 dark:text-neutral-500 flex-grow'>
+        <p>No friends yet</p>
+      </div>
     </div>
   )
 }

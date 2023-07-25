@@ -4,6 +4,7 @@ import type { ReactNode } from 'react'
 import { Inter } from 'next/font/google'
 
 import Providers from '@/app/providers'
+import { Toaster } from '@/components/ui/toaster'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -18,7 +19,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body
         className={`${inter.className} flex flex-col min-h-screen w-full bg-neutral-100 dark:bg-neutral-950 dark:text-white transition-all duration-200 ease-in-out`}
       >
-        <Providers>{children}</Providers>
+        <Providers>
+          {children}
+          <Toaster />
+        </Providers>
       </body>
     </html>
   )
