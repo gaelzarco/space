@@ -1,46 +1,64 @@
 import { type FC } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
+import { notFound } from 'next/navigation'
 import { type Session, getServerSession } from 'next-auth'
 import { authOptions } from '@/app/api/auth/[...nextauth]/route'
-import { fetchRedis } from '@/helpers/fetchredis'
+import { getFriendsByUserId } from '@/helpers/getFriendsByUserId'
 
-import Button from '@/components/ui/button'
-import { ChatBubbleIcon } from '@radix-ui/react-icons'
+import AddFriendsDialog from './addfriendsdialog'
 
 const DashSideBar: FC = async () => {
   const session: Session | null = await getServerSession(authOptions)
-  if (!session) return null
+  if (!session) return notFound()
 
-  const chats = await fetchRedis('get', `user:${session.user.id}:chats`)
+  const friends = await getFriendsByUserId(session.user.id)
 
   return (
-    <div className='flex flex-col items-center min-w-[400px] border-r border-neutral-200 dark:border-neutral-800 overflow-y-scroll flex-grow'>
+    <div className='flex flex-col items-center min-w-[400px] border-r border-neutral-200 dark:border-neutral-800 overflow-y-auto flex-grow'>
       <div className='flex flex-row text-sm items-center justify-between w-full py-2 px-3 border-b border-neutral-200 dark:border-neutral-800'>
         <Link
           href='/dashboard'
           className='text-2xl font-bold justify-self-start hover:text-neutral-600 dark:text-white dark:hover:text-neutral-300 p-2 m-2 transition-all ease-in-out duration-200'
         >
-          <h1>Chats</h1>
+          <h1>Friends</h1>
         </Link>
-        <Button className='m-0'>
-          New
-          <ChatBubbleIcon className='ml-2' />
-        </Button>
+        <AddFriendsDialog />
       </div>
 
-      {!!chats ? (
-        chats.map((chat: any, i: number) => {
-          return (
-            <div key={i}>
-              <p>{chat.name}</p>
-            </div>
-          )
-        })
-      ) : (
-        <div className='flex flex-col items-center justify-center w-full text-sm text-neutral-400 dark:text-neutral-500 flex-grow'>
-          <p>No conversations yet</p>
-        </div>
-      )}
+      <div className='flex flex-col w-full mx-4'>
+        {friends.length > 0 ? (
+          friends.map((friend) => {
+            return (
+              <Link
+                key={friend.id}
+                href={`dashboard/chat/${friend.id}`}
+                className='cursor-pointer inline-flex items-center w-inherit h-16 content-center hover:bg-neutral-200 dark:hover:bg-neutral-900 dark:text-white px-6 py-5 m-2 rounded-xl transition-all duration-200 ease-in-out'
+              >
+                <div className='flex flex-row items-center mr-6'>
+                  <div className='flex items-center content-center justify-center flex-row mr-4'>
+                    <Image
+                      src={friend.image}
+                      alt='Profile image'
+                      height={45}
+                      width={45}
+                      className='rounded-full'
+                    />
+                  </div>
+
+                  <div className='flex flex-col'>
+                    <p>{friend.name}</p>
+                  </div>
+                </div>
+              </Link>
+            )
+          })
+        ) : (
+          <div className='flex flex-col justify-center w-full text-neutral-400 dark:text-neutral-500 flex-grow'>
+            <p>No friends yet</p>
+          </div>
+        )}
+      </div>
     </div>
   )
 }

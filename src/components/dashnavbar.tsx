@@ -1,6 +1,9 @@
 import { type FC, type HTMLAttributes } from 'react'
 import { type Session, getServerSession } from 'next-auth'
 import { authOptions } from '@/app/api/auth/[...nextauth]/route'
+import { notFound } from 'next/navigation'
+import { fetchRedis } from '@/helpers/fetchredis'
+import { getIncomingFriendRequests } from '@/helpers/getIncomingFriendRequests'
 import Link from 'next/link'
 import Image from 'next/image'
 import { cn } from '@/lib/utils'
@@ -15,9 +18,10 @@ import {
 } from '@/components/ui/dropdownmenu'
 import ThemeSwitcher from '@/components/themeswitch'
 import LogoutOption from '@/components/logoutoption'
+import NavBarLogo from './navbarlogo'
+import FriendRequests from './friendrequests'
 
 import { CaretDownIcon } from '@radix-ui/react-icons'
-import Button from '@/components/ui/button'
 
 interface NavBarProps extends HTMLAttributes<HTMLDivElement> {}
 
@@ -28,6 +32,16 @@ const DashNavBar: FC<NavBarProps> = async ({
   ...props
 }) => {
   const session: Session | null = await getServerSession(authOptions)
+  if (!session) return notFound()
+
+  const incomingSenderIds = (await fetchRedis(
+    'smembers',
+    `user:${session.user.id}:incoming_friend_requests`
+  )) as string[]
+
+  const incomingFriendRequests = await getIncomingFriendRequests(
+    incomingSenderIds
+  )
 
   return (
     <nav
@@ -41,19 +55,20 @@ const DashNavBar: FC<NavBarProps> = async ({
         href='/'
         className='min-w-[100px] font-bold justify-self-start hover:text-neutral-600 dark:text-white dark:hover:text-neutral-300 transition-all ease-in-out duration-200'
       >
-        SSpace
+        <NavBarLogo />
       </Link>
 
       {!!session && (
         <div className='inline-flex items-center content-center justify-self-end'>
+          <FriendRequests
+            incomingFriendRequests={incomingFriendRequests}
+            sessionId={session.user.id}
+          />
+
           <ThemeSwitcher />
 
-          <Link href='/dashboard/friends' className='mr-2'>
-            <Button className='text-sm m-0'>Friends</Button>
-          </Link>
-
           <DropdownMenu>
-            <DropdownMenuTrigger className='inline-flex items-center justify-center rounded-full hover:text-neutral-600 dark:text-white dark:hover:text-neutral-300 py-2 px-2 ml-6 transition-all ease-in-out duration-200'>
+            <DropdownMenuTrigger className='inline-flex min-w-[142px] items-center justify-center rounded-full hover:text-neutral-600 dark:text-white dark:hover:text-neutral-300 h-8 py-5 px-6 m-2 transition-all duration-200 ease-in-out'>
               <div className='inline-flex items-center content-center justify-center'>
                 <CaretDownIcon className='w-4 h-4 mr-2' />
 
