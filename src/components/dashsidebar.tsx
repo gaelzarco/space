@@ -15,7 +15,7 @@ const DashSideBar: FC = async () => {
   const friends = await getFriendsByUserId(session.user.id)
 
   return (
-    <div className='flex flex-col items-center min-w-[400px] border-r border-neutral-200 dark:border-neutral-800 overflow-y-auto flex-grow'>
+    <div className='flex flex-col items-center min-w-[400px] border-r border-neutral-200 dark:border-neutral-800 flex-grow'>
       <div className='flex flex-row text-sm items-center justify-between w-full py-2 px-3 border-b border-neutral-200 dark:border-neutral-800'>
         <Link
           href='/dashboard'
@@ -26,7 +26,7 @@ const DashSideBar: FC = async () => {
         <AddFriendsDialog />
       </div>
 
-      <div className='flex flex-col w-full mx-4'>
+      <div className='flex flex-col w-full mx-4 overflow-y-auto'>
         {friends.length > 0 ? (
           friends.map((friend) => {
             return (

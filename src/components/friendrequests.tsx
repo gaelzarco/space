@@ -5,7 +5,7 @@ import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { pusherClient } from '@/lib/pusher'
 import { toPusherKey } from '@/lib/utils'
-import { useToast } from './ui/use-toast'
+import { useToast } from '@/components/ui/use-toast'
 import { z } from 'zod'
 
 import {
