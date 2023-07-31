@@ -38,10 +38,12 @@ const ChatInput: FC<ChatInputProps> = () => {
       // })
 
       // if (res.status === 200) {
-      //   toast({
-      //     title: 'Success',
-      //     description: `Message sent succesfully`
-      //  })
+      toast({
+        title: 'Success',
+        description: `Message sent succesfully`
+      })
+
+      setMessage('')
       // } else {
       //   const errMessage = await res.text()
       //   return toast({
@@ -49,6 +51,8 @@ const ChatInput: FC<ChatInputProps> = () => {
       //     description: `${errMessage}`,
       //     variant: 'destructive'
       //   })
+      //
+      //   setMessage('')
       // }
     } catch (err) {
       if (err instanceof z.ZodError)
@@ -78,7 +82,7 @@ const ChatInput: FC<ChatInputProps> = () => {
   return (
     <div className='bottom-0 flex flex-col items-center justify-center w-full h-28 border-t border-neutral-300 dark:border-neutral-800'>
       <div className='flex flex-row items-center w-full'>
-        <Input className='ml-4' onChange={handleInputChange} />
+        <Input className='ml-4' onChange={handleInputChange} value={message} />
         <Button
           className='mr-4'
           type='submit'
