@@ -8,10 +8,11 @@ import { Input } from '@/components/ui/input'
 import Button from '@/components/ui/button'
 
 interface ChatInputProps {
+  userId: string
   friend: User
 }
 
-const ChatInput: FC<ChatInputProps> = () => {
+const ChatInput: FC<ChatInputProps> = ({ userId, friend }) => {
   const { toast } = useToast()
   const [message, setMessage] = useState<string>('')
   const [isLoading, setIsLoading] = useState<boolean>(false)
@@ -32,28 +33,33 @@ const ChatInput: FC<ChatInputProps> = () => {
           variant: 'destructive'
         })
 
-      // const res = await fetch('/api/friends/add', {
-      //   method: 'POST',
-      //   body: JSON.stringify({ message: message })
-      // })
-
-      // if (res.status === 200) {
-      toast({
-        title: 'Success',
-        description: `Message sent succesfully`
+      const res = await fetch('/api/messages/send', {
+        method: 'POST',
+        body: JSON.stringify({
+          chatId: `${userId}--${friend.id}`,
+          message: message
+        })
       })
 
-      setMessage('')
-      // } else {
-      //   const errMessage = await res.text()
-      //   return toast({
-      //     title: 'Error',
-      //     description: `${errMessage}`,
-      //     variant: 'destructive'
-      //   })
-      //
-      //   setMessage('')
-      // }
+      if (res.status === 200) {
+        const data = await res.text()
+        console.log(data)
+        setMessage('')
+
+        return toast({
+          title: 'Success',
+          description: `Message sent succesfully`
+        })
+      } else {
+        const errMessage = await res.text()
+        setMessage('')
+
+        return toast({
+          title: 'Error',
+          description: `${errMessage}`,
+          variant: 'destructive'
+        })
+      }
     } catch (err) {
       if (err instanceof z.ZodError)
         return toast({

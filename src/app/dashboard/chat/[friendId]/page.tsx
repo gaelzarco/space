@@ -37,7 +37,7 @@ const Chat: FC<ChatProps> = async ({ params }) => {
           </div>
         </div>
       </div>
-      <ChatInput friend={parsedFriend} />
+      <ChatInput userId={session.user.id} friend={parsedFriend} />
     </div>
   )
 }
