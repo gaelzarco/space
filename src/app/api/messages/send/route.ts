@@ -1,7 +1,11 @@
+import { randomUUID } from 'crypto'
 import type { NextRequest } from 'next/server'
 import { type Session, getServerSession } from 'next-auth'
 import { authOptions } from '@/app/api/auth/[...nextauth]/route'
+import { pusherServer } from '@/lib/pusher'
+import { toPusherKey } from '@/lib/utils'
 import { fetchRedis } from '@/helpers/fetchredis'
+import { db } from '@/lib/db'
 import { z } from 'zod'
 
 export async function POST(req: NextRequest) {
@@ -10,8 +14,7 @@ export async function POST(req: NextRequest) {
   if (!session) return new Response('Unauthorized', { status: 401 })
 
   try {
-    const { message, chatId }: { message: string; chatId: string } =
-      await req.json()
+    const { text, chatId }: { text: string; chatId: string } = await req.json()
 
     const [userId, friendId] = chatId.split('--')
 
@@ -29,7 +32,46 @@ export async function POST(req: NextRequest) {
       return new Response('You must be friends to chat', { status: 401 })
     }
 
-    return new Response(message, { status: 200 })
+    const sender = (await fetchRedis(
+      'get',
+      `user:${session.user.id}`
+    )) as string
+    const parsedSender = JSON.parse(sender) as User
+
+    const timestamp = Date.now()
+
+    const messageData = {
+      id: randomUUID(),
+      senderId: session.user.id,
+      text,
+      timestamp
+    }
+
+    const message = messageData
+
+    // notify connected chat room clients
+    await pusherServer.trigger(
+      toPusherKey(`chat:${chatId}`),
+      'incoming-message',
+      message
+    )
+
+    await pusherServer.trigger(
+      toPusherKey(`chat:${friendId}:chats`),
+      'new_message',
+      {
+        ...message,
+        senderImg: parsedSender.image,
+        senderName: parsedSender.name
+      }
+    )
+
+    await db.zadd(`chat:${chatId}:messages`, {
+      score: timestamp,
+      member: JSON.stringify(message)
+    })
+
+    return new Response(text, { status: 200 })
   } catch (error) {
     if (error instanceof z.ZodError) {
       return new Response('Invalid request payload', { status: 422 })

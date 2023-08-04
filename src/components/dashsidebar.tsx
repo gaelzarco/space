@@ -32,7 +32,7 @@ const DashSideBar: FC = async () => {
             return (
               <Link
                 key={friend.id}
-                href={`/dashboard/chat/${friend.id}`}
+                href={`/dashboard/chat/${session.user.id}--${friend.id}`}
                 className='cursor-pointer inline-flex items-center w-inherit h-16 content-center hover:bg-neutral-200 dark:hover:bg-neutral-900 dark:text-white px-6 py-5 m-2 rounded-xl transition-all duration-200 ease-in-out'
                 shallow
               >

@@ -86,19 +86,21 @@ const ChatInput: FC<ChatInputProps> = ({ userId, friend }) => {
   }
 
   return (
-    <div className='bottom-0 flex flex-col items-center justify-center w-full h-28 border-t border-neutral-300 dark:border-neutral-800'>
-      <div className='flex flex-row items-center w-full'>
+    <div className='bottom-0 flex flex-col items-center justify-center w-full h-28 backdrop-blur-xl bg-neutral-200/30 dark:bg-neutral-800/30 border-t border-neutral-00 dark:border-neutral-800'>
+      <form
+        onSubmit={handleSubmit}
+        className='flex flex-row items-center w-full'
+      >
         <Input className='ml-4' onChange={handleInputChange} value={message} />
         <Button
           className='mr-4'
           type='submit'
           aria-label='send message'
           isLoading={isLoading}
-          onClick={handleSubmit}
         >
           Send
         </Button>
-      </div>
+      </form>
     </div>
   )
 }
