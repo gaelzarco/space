@@ -45,11 +45,6 @@ const ChatInput: FC<ChatInputProps> = ({ userId, friend }) => {
         const data = await res.text()
         console.log(data)
         setMessage('')
-
-        return toast({
-          title: 'Success',
-          description: `Message sent succesfully`
-        })
       } else {
         const errMessage = await res.text()
         setMessage('')

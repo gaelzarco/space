@@ -5,6 +5,7 @@ import { type Session, getServerSession } from 'next-auth'
 import { authOptions } from '@/app/api/auth/[...nextauth]/route'
 import { fetchRedis } from '@/helpers/fetchredis'
 
+import Messages from '@/components/messages'
 import ChatInput from '@/components/chatinput'
 import { CaretLeftIcon } from '@radix-ui/react-icons'
 
@@ -69,7 +70,6 @@ const Chat: FC<ChatProps> = async ({ params }) => {
   const chatFriend = (await fetchRedis('get', `user:${chatFriendId}`)) as string
   const parsedChatFriend = JSON.parse(chatFriend) as User
   const initialMessages = await getChatMessages(chatId)
-  console.log(initialMessages)
 
   return (
     <div className='flex flex-col items-center w-full h-full'>
@@ -87,6 +87,12 @@ const Chat: FC<ChatProps> = async ({ params }) => {
           </div>
         </div>
       </div>
+      <Messages
+        chatId={chatId}
+        userId={session.user.id}
+        chatFriend={parsedChatFriend}
+        initialMessages={initialMessages}
+      />
       <ChatInput userId={session.user.id} friend={parsedChatFriend} />
     </div>
   )
