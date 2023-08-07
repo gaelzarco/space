@@ -15,6 +15,7 @@ export async function POST(req: NextRequest) {
 
   try {
     const { text, chatId }: { text: string; chatId: string } = await req.json()
+    console.log(text)
 
     const [userId, friendId] = chatId.split('--')
 
@@ -47,20 +48,18 @@ export async function POST(req: NextRequest) {
       timestamp
     }
 
-    const message = messageData
-
     // notify connected chat room clients
     await pusherServer.trigger(
       toPusherKey(`chat:${chatId}`),
       'incoming-message',
-      message
+      messageData
     )
 
     await pusherServer.trigger(
       toPusherKey(`chat:${friendId}:chats`),
       'new_message',
       {
-        ...message,
+        ...messageData,
         senderImg: parsedSender.image,
         senderName: parsedSender.name
       }
@@ -68,7 +67,7 @@ export async function POST(req: NextRequest) {
 
     await db.zadd(`chat:${chatId}:messages`, {
       score: timestamp,
-      member: JSON.stringify(message)
+      member: JSON.stringify(messageData)
     })
 
     return new Response(text, { status: 200 })

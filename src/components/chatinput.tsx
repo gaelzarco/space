@@ -37,7 +37,7 @@ const ChatInput: FC<ChatInputProps> = ({ userId, friend }) => {
         method: 'POST',
         body: JSON.stringify({
           chatId: `${userId}--${friend.id}`,
-          message: message
+          text: message
         })
       })
 
