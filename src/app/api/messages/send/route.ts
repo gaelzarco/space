@@ -15,7 +15,6 @@ export async function POST(req: NextRequest) {
 
   try {
     const { text, chatId }: { text: string; chatId: string } = await req.json()
-    console.log(text)
 
     const [userId, friendId] = chatId.split('--')
 

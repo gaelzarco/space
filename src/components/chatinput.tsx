@@ -42,8 +42,6 @@ const ChatInput: FC<ChatInputProps> = ({ userId, friend }) => {
       })
 
       if (res.status === 200) {
-        const data = await res.text()
-        console.log(data)
         setMessage('')
       } else {
         const errMessage = await res.text()

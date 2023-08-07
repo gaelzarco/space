@@ -30,8 +30,6 @@ const Messages: FC<MessageProps> = ({
 
     pusherClient.bind('incoming-message', messageHandler)
 
-    console.log(messages)
-
     return () => {
       pusherClient.unsubscribe(toPusherKey(`chat:${chatId}`))
       pusherClient.unbind('incoming-message', messageHandler)
