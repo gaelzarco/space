@@ -30,6 +30,8 @@ const Messages: FC<MessageProps> = ({
 
     pusherClient.bind('incoming-message', messageHandler)
 
+    console.log(messages)
+
     return () => {
       pusherClient.unsubscribe(toPusherKey(`chat:${chatId}`))
       pusherClient.unbind('incoming-message', messageHandler)
@@ -40,14 +42,20 @@ const Messages: FC<MessageProps> = ({
 
   return (
     <div className='flex flex-col w-full h-full overflow-y-auto'>
-      <h1>Messages</h1>
-      {messages.map((message, i) => {
-        return (
-          <div key={i}>
-            <h1>{message.text}</h1>
-          </div>
-        )
-      })}
+      <div className='flex flex-col items-end content-end justify-end h-full w-full'>
+        {messages.map((message, i) => {
+          return (
+            <div
+              key={i}
+              className={`${
+                message.senderId === userId ? 'justify-end' : 'justify-start'
+              }`}
+            >
+              <h1>{message.text}</h1>
+            </div>
+          )
+        })}
+      </div>
     </div>
   )
 }
