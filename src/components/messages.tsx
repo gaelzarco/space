@@ -47,9 +47,9 @@ const Messages: FC<MessageProps> = ({
           return (
             <div
               key={i}
-              className={`${
-                message.senderId === userId ? 'justify-end' : 'justify-start'
-              }`}
+              // className={`${
+              //   message.senderId === userId ? 'justify-end' : 'justify-start'
+              // }`}
             >
               <h1>{message.text}</h1>
             </div>

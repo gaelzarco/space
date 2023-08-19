@@ -6,6 +6,7 @@ import { z } from 'zod'
 
 import { Input } from '@/components/ui/input'
 import Button from '@/components/ui/button'
+import { chatHrefConstructor } from '@/lib/utils'
 
 interface ChatInputProps {
   userId: string
@@ -36,7 +37,7 @@ const ChatInput: FC<ChatInputProps> = ({ userId, friend }) => {
       const res = await fetch('/api/messages/send', {
         method: 'POST',
         body: JSON.stringify({
-          chatId: `${userId}--${friend.id}`,
+          chatId: chatHrefConstructor(userId, friend.id),
           text: message
         })
       })

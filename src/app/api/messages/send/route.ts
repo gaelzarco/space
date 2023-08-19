@@ -16,7 +16,10 @@ export async function POST(req: NextRequest) {
   try {
     const { text, chatId }: { text: string; chatId: string } = await req.json()
 
-    const [userId, friendId] = chatId.split('--')
+    const splitChatId: Array<string> = chatId.split('--')
+
+    const userId = splitChatId.find((id) => id === session.user.id)
+    const friendId = splitChatId.find((id) => id !== session.user.id) as string
 
     if (session.user.id !== userId) {
       return new Response('Unauthorized', { status: 401 })
