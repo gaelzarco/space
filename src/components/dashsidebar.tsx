@@ -59,7 +59,7 @@ const DashSideBar: FC = async () => {
             )
           })
         ) : (
-          <div className='flex flex-col justify-center w-full text-neutral-400 dark:text-neutral-500 flex-grow'>
+          <div className='flex flex-col justify-center h-full w-full text-neutral-400 dark:text-neutral-500 flex-grow'>
             <p>No friends yet</p>
           </div>
         )}

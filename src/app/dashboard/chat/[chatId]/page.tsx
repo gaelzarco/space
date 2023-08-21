@@ -5,7 +5,6 @@ import { type Session, getServerSession } from 'next-auth'
 import { authOptions } from '@/app/api/auth/[...nextauth]/route'
 import { fetchRedis } from '@/helpers/fetchredis'
 
-import DashNavBar from '@/components/dashnavbar'
 import Messages from '@/components/messages'
 import ChatInput from '@/components/chatinput'
 import { CaretLeftIcon } from '@radix-ui/react-icons'
@@ -72,10 +71,6 @@ const Chat: FC<ChatProps> = async ({ params }) => {
 
   return (
     <div className='flex flex-col items-center w-full h-full'>
-      <div className='flex flex-col w-full min-h-[80px]'>
-        <DashNavBar />
-      </div>
-
       <div className='flex flex-row text-sm items-center justify-between w-full h-22 py-2 px-3 bg-neutral-200/30 dark:bg-neutral-800/30 border-b border-neutral-200 dark:border-neutral-800'>
         <div className='text-2xl flex flex-row items-center w-full h-full font-bold dark:text-white p-2 m-2 transition-all ease-in-out duration-200'>
           <Link
