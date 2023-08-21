@@ -22,18 +22,11 @@ const Messages: FC<MessageProps> = ({
   const [messages, setMessages] = useState<Message[]>(initialMessages)
   const scrollDownRef = useRef<HTMLDivElement | null>(null)
 
-  const scrollToBottom = () => {
-    if (scrollDownRef.current) {
-      scrollDownRef.current.scrollTop = scrollDownRef.current.scrollHeight
-    }
-  }
-
   useEffect(() => {
     pusherClient.subscribe(toPusherKey(`chat:${chatId}`))
 
     const messageHandler = (message: Message) => {
       setMessages((prev) => [...prev, message])
-      scrollToBottom()
     }
 
     pusherClient.bind('incoming-message', messageHandler)
@@ -45,11 +38,8 @@ const Messages: FC<MessageProps> = ({
   }, [chatId, messages])
 
   return (
-    <div className='flex flex-col w-full h-full'>
-      <div
-        className='flex flex-col h-full justify-end w-full p-2'
-        ref={scrollDownRef}
-      >
+    <div className='flex flex-col w-full max-h-full overflow-y-auto'>
+      <div className='flex flex-col justify-end w-full p-2' ref={scrollDownRef}>
         {messages.map((message) => {
           const isSender: boolean = message.senderId === userId
 
