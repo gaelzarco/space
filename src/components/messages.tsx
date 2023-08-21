@@ -3,7 +3,7 @@
 import { type FC, useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
 import { pusherClient } from '@/lib/pusher'
-import { cn, toPusherKey } from '@/lib/utils'
+import { toPusherKey } from '@/lib/utils'
 import { Message } from '@/lib/validators'
 
 interface MessageProps {
@@ -20,38 +20,67 @@ const Messages: FC<MessageProps> = ({
   chatFriend
 }) => {
   const [messages, setMessages] = useState<Message[]>(initialMessages)
+  const scrollDownRef = useRef<HTMLDivElement | null>(null)
+
+  const scrollToBottom = () => {
+    if (scrollDownRef.current) {
+      scrollDownRef.current.scrollTop = scrollDownRef.current.scrollHeight
+    }
+  }
 
   useEffect(() => {
     pusherClient.subscribe(toPusherKey(`chat:${chatId}`))
 
     const messageHandler = (message: Message) => {
-      setMessages((prev) => [message, ...prev])
+      setMessages((prev) => [...prev, message])
+      scrollToBottom()
     }
 
     pusherClient.bind('incoming-message', messageHandler)
-
-    console.log(messages)
 
     return () => {
       pusherClient.unsubscribe(toPusherKey(`chat:${chatId}`))
       pusherClient.unbind('incoming-message', messageHandler)
     }
-  }, [chatId])
-
-  // const scrollDownRef = useRef<HTMLDivElement | null>(null)
+  }, [chatId, messages])
 
   return (
-    <div className='flex flex-col w-full h-full overflow-y-auto'>
-      <div className='flex flex-col items-end content-end justify-end h-full w-full'>
-        {messages.map((message, i) => {
+    <div className='flex flex-col w-full h-full'>
+      <div
+        className='flex flex-col h-full justify-end w-full p-2'
+        ref={scrollDownRef}
+      >
+        {messages.map((message) => {
+          const isSender: boolean = message.senderId === userId
+
           return (
             <div
-              key={i}
-              // className={`${
-              //   message.senderId === userId ? 'justify-end' : 'justify-start'
-              // }`}
+              key={`${message.id}-${message.timestamp}`}
+              className={`flex flex-row w-full items-center p-1 ${
+                isSender && 'justify-end'
+              }`}
             >
-              <h1>{message.text}</h1>
+              {isSender === false && (
+                <Image
+                  className='rounded-full mr-2'
+                  src={chatFriend.image}
+                  alt='profile image'
+                  height={40}
+                  width={40}
+                />
+              )}
+              <div
+                className={`
+                max-w-sm rounded-3xl py-3 px-4
+                ${
+                  isSender
+                    ? 'text-white bg-blue-400 dark:bg-blue-400'
+                    : ' bg-neutral-200 dark:bg-neutral-900'
+                }
+                `}
+              >
+                <p className='break-words'>{message.text}</p>
+              </div>
             </div>
           )
         })}

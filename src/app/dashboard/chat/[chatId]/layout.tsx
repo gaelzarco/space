@@ -7,5 +7,5 @@ export const metadata: Metadata = {
 }
 
 export default function Layout({ children }: { children: ReactNode }) {
-  return <main className='layout-1800 items-center'>{children}</main>
+  return <main className=' w-full h-full items-center'>{children}</main>
 }

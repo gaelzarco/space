@@ -46,7 +46,7 @@ const DashNavBar: FC<NavBarProps> = async ({
   return (
     <nav
       className={cn(
-        'inline-flex w-full h-[80px] items-center justify-between border-b border-neutral-200 dark:border-neutral-800 text-black dark:text-white px-5',
+        'inline-flex w-full min-h-[80px] items-center justify-between border-b border-neutral-200 dark:border-neutral-800 text-black dark:text-white px-5',
         className
       )}
       {...props}

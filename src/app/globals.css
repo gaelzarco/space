@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
 .layout-1800 {
-  @apply flex flex-col max-w-[1800px] w-full mx-auto flex-grow;
+  @apply flex flex-col max-w-[1800px] w-full max-h-screen mx-auto;
 }

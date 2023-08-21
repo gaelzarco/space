@@ -80,10 +80,10 @@ const ChatInput: FC<ChatInputProps> = ({ userId, friend }) => {
   }
 
   return (
-    <div className='bottom-0 flex flex-col items-center justify-center w-full h-28 backdrop-blur-xl bg-neutral-200/30 dark:bg-neutral-800/30 border-t border-neutral-00 dark:border-neutral-800'>
+    <div className='flex flex-col items-center justify-center w-full h-full backdrop-blur-3xl bg-neutral-200/30 dark:bg-neutral-800/30 border-t border-neutral-200 dark:border-neutral-800'>
       <form
         onSubmit={handleSubmit}
-        className='flex flex-row items-center w-full'
+        className='flex flex-row items-center w-full h-full'
       >
         <Input className='ml-4' onChange={handleInputChange} value={message} />
         <Button
