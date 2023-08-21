@@ -18,7 +18,7 @@ import {
 } from '@/components/ui/dropdownmenu'
 import ThemeSwitcher from '@/components/themeswitch'
 import LogoutOption from '@/components/logoutoption'
-import NavBarLogo from './navbarlogo'
+// import NavBarLogo from './navbarlogo'
 import FriendRequests from './friendrequests'
 
 import { CaretDownIcon } from '@radix-ui/react-icons'
@@ -55,7 +55,8 @@ const DashNavBar: FC<NavBarProps> = async ({
         href='/'
         className='min-w-[100px] font-bold justify-self-start hover:text-neutral-600 dark:text-white dark:hover:text-neutral-300 transition-all ease-in-out duration-200'
       >
-        <NavBarLogo />
+        {/* <NavBarLogo /> */}
+        Social Space
       </Link>
 
       {!!session && (
