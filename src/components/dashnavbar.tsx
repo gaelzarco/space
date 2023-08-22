@@ -46,19 +46,11 @@ const DashNavBar: FC<NavBarProps> = async ({
   return (
     <nav
       className={cn(
-        'inline-flex w-full min-h-[80px] items-center justify-between border-b border-neutral-200 dark:border-neutral-800 text-black dark:text-white px-5',
+        'inline-flex w-min min-h-[80px] items-center text-black dark:text-white px-5',
         className
       )}
       {...props}
     >
-      <Link
-        href='/'
-        className='min-w-[100px] font-bold justify-self-start hover:text-neutral-600 dark:text-white dark:hover:text-neutral-300 transition-all ease-in-out duration-200'
-      >
-        {/* <NavBarLogo /> */}
-        Social Space
-      </Link>
-
       {!!session && (
         <div className='inline-flex items-center content-center justify-self-end'>
           <FriendRequests

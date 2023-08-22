@@ -13,9 +13,13 @@ const config = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'lh3.googleusercontent.com',
+        hostname: 'lh3.googleusercontent.com'
       },
-    ],
+      {
+        protocol: 'https',
+        hostname: 'avatars.githubusercontent.com'
+      }
+    ]
   },
   /**
    * If you have the "experimental: { appDir: true }" setting enabled, then you
@@ -29,13 +33,13 @@ const config = {
   // },
 
   typescript: {
-    ignoreBuildErrors: true,
+    ignoreBuildErrors: true
   },
 
   eslint: {
-    ignoreDuringBuilds: true,
+    ignoreDuringBuilds: true
   },
 
-  swcMinify: true,
+  swcMinify: true
 }
 export default config

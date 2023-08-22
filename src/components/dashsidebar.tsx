@@ -22,7 +22,7 @@ const DashSideBar: FC = async () => {
           href='/dashboard'
           className='text-2xl font-bold justify-self-start hover:text-neutral-600 dark:text-white dark:hover:text-neutral-300 p-2 m-2 transition-all ease-in-out duration-200'
         >
-          <h1>Friends</h1>
+          <h1>Social Space</h1>
         </Link>
         <AddFriendsDialog />
       </div>
