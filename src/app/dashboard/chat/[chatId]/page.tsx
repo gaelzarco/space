@@ -24,7 +24,7 @@ export async function generateMetadata({
   const chatFriend = (await fetchRedis('get', `user:${chatFriendId}`)) as string
   const parsedChatFriend = JSON.parse(chatFriend) as User
 
-  return { title: `sSpace | ${parsedChatFriend.name} chat` }
+  return { title: `sSpace | ${parsedChatFriend.name} Chat` }
 }
 
 interface ChatProps {
