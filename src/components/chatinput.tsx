@@ -17,6 +17,7 @@ const ChatInput: FC<ChatInputProps> = ({ userId, friend }) => {
   const { toast } = useToast()
   const [message, setMessage] = useState<string>('')
   const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [isSending, setIsSending] = useState<boolean>(false)
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setMessage(e.target.value)
@@ -24,9 +25,13 @@ const ChatInput: FC<ChatInputProps> = ({ userId, friend }) => {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
+
+    if (isSending) return
     setIsLoading(true)
 
     try {
+      setIsSending(true)
+
       if (message.length < 1)
         return toast({
           title: 'Error',
@@ -76,6 +81,7 @@ const ChatInput: FC<ChatInputProps> = ({ userId, friend }) => {
       })
     } finally {
       setIsLoading(false)
+      setIsSending(false)
     }
   }
 

@@ -14,6 +14,7 @@ const DashSideBar: FC = async () => {
   if (!session) return notFound()
 
   const friends = await getFriendsByUserId(session.user.id)
+  console.log(friends)
 
   return (
     <div className='flex flex-col items-center h-full min-w-[400px] border-r border-neutral-200 dark:border-neutral-800'>

@@ -70,8 +70,8 @@ const Chat: FC<ChatProps> = async ({ params }) => {
   const initialMessages = await getChatMessages(chatId)
 
   return (
-    <div className='flex flex-col items-center w-full h-full max-h-full'>
-      <div className='flex flex-row text-sm items-center justify-between w-full h-22 py-2 px-3 bg-neutral-200/30 dark:bg-neutral-800/30 border-b border-neutral-200 dark:border-neutral-800'>
+    <div className='flex flex-col items-center justify-between w-full h-screen max-h-screen'>
+      <div className='flex flex-row text-sm items-center justify-between w-full py-2 px-3 bg-neutral-200/30 dark:bg-neutral-800/30 border-b border-neutral-200 dark:border-neutral-800'>
         <div className='text-2xl flex flex-row items-center w-full h-full font-bold dark:text-white p-2 m-2 transition-all ease-in-out duration-200'>
           <Link
             className='flex items-center mr-4 bg-neutral-200 hover:bg-neutral-300 dark:bg-neutral-800 dark:hover:bg-neutral-900 rounded-full transition-all ease-in-out duration-200'

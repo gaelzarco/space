@@ -44,7 +44,7 @@ const Messages: FC<MessageProps> = ({
   }, [chatId, messages])
 
   return (
-    <div className='flex flex-col w-full max-h-full overflow-y-auto'>
+    <div className='flex flex-col h-full w-full overflow-y-auto'>
       <div className='flex flex-col justify-end w-full p-2'>
         {messages.map((message) => {
           const isSender: boolean = message.senderId === userId
