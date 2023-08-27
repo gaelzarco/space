@@ -1,6 +1,6 @@
 'use client'
 
-import { type FC, useState, useEffect, useRef } from 'react'
+import { type FC, useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { chatHrefConstructor } from '@/lib/utils'
@@ -8,26 +8,25 @@ import { pusherClient } from '@/lib/pusher'
 import { toPusherKey } from '@/lib/utils'
 
 interface FriendsProps {
-  initialChatFriends: User[]
   userId: string
-  chatId: string
+  initialChatFriends: User[]
 }
 
-const Friends: FC<FriendsProps> = ({ initialChatFriends, userId, chatId }) => {
+const Friends: FC<FriendsProps> = ({ initialChatFriends, userId }) => {
   const [friends, setFriends] = useState<User[]>(initialChatFriends)
 
   useEffect(() => {
-    pusherClient.subscribe(toPusherKey(`chat:${chatId}`))
+    pusherClient.subscribe(toPusherKey(`user:${userId}:friends`))
 
-    const messageHandler = (friend: User) => {
+    const friendsHandler = (friend: User) => {
       setFriends((prev) => [...prev, friend])
     }
 
-    pusherClient.bind('incoming-message', messageHandler)
+    pusherClient.bind('new_friends', friendsHandler)
 
     return () => {
-      pusherClient.unsubscribe(toPusherKey(`chat:${chatId}`))
-      pusherClient.unbind('incoming-message', messageHandler)
+      pusherClient.unsubscribe(toPusherKey(`user:${userId}:friends`))
+      pusherClient.unbind('new_friends', friendsHandler)
     }
   }, [friends])
 

@@ -7,6 +7,7 @@ import { authOptions } from '@/app/api/auth/[...nextauth]/route'
 import { getFriendsByUserId } from '@/helpers/getFriendsByUserId'
 import { chatHrefConstructor } from '@/lib/utils'
 
+import Friends from './friends'
 import AddFriendsDialog from './addfriendsdialog'
 
 const DashSideBar: FC = async () => {
@@ -14,7 +15,6 @@ const DashSideBar: FC = async () => {
   if (!session) return notFound()
 
   const friends = await getFriendsByUserId(session.user.id)
-  console.log(friends)
 
   return (
     <div className='flex flex-col items-center h-full min-w-[400px] border-r border-neutral-200 dark:border-neutral-800'>
@@ -29,41 +29,7 @@ const DashSideBar: FC = async () => {
       </div>
 
       <div className='flex flex-col w-full mx-4 overflow-y-auto'>
-        {friends.length > 0 ? (
-          friends.map((friend) => {
-            return (
-              <Link
-                key={friend.id}
-                href={`/dashboard/chat/${chatHrefConstructor(
-                  session.user.id,
-                  friend.id
-                )}`}
-                className='cursor-pointer inline-flex items-center w-inherit h-16 content-center hover:bg-neutral-200 dark:hover:bg-neutral-900 dark:text-white px-6 py-5 m-2 rounded-xl transition-all duration-200 ease-in-out'
-                shallow
-              >
-                <div className='flex flex-row items-center mr-6'>
-                  <div className='flex items-center content-center justify-center flex-row mr-4'>
-                    <Image
-                      src={friend.image}
-                      alt='Profile image'
-                      height={45}
-                      width={45}
-                      className='rounded-full'
-                    />
-                  </div>
-
-                  <div className='flex flex-col'>
-                    <p>{friend.name}</p>
-                  </div>
-                </div>
-              </Link>
-            )
-          })
-        ) : (
-          <div className='flex flex-col justify-center h-full w-full text-neutral-400 dark:text-neutral-500 flex-grow'>
-            <p>No friends yet</p>
-          </div>
-        )}
+        <Friends userId={session.user.id} initialChatFriends={friends} />
       </div>
     </div>
   )

@@ -71,7 +71,7 @@ const Messages: FC<MessageProps> = ({
                 ${
                   isSender
                     ? 'text-white bg-blue-400 dark:bg-blue-400'
-                    : ' bg-neutral-200 dark:bg-neutral-900'
+                    : ' bg-neutral-200 dark:bg-neutral-800'
                 }
                 `}
               >
