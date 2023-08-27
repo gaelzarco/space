@@ -6,6 +6,7 @@ import { z } from 'zod'
 
 import { Input } from '@/components/ui/input'
 import Button from '@/components/ui/button'
+import { chatHrefConstructor } from '@/lib/utils'
 
 interface ChatInputProps {
   userId: string
@@ -16,6 +17,7 @@ const ChatInput: FC<ChatInputProps> = ({ userId, friend }) => {
   const { toast } = useToast()
   const [message, setMessage] = useState<string>('')
   const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [isSending, setIsSending] = useState<boolean>(false)
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setMessage(e.target.value)
@@ -23,9 +25,13 @@ const ChatInput: FC<ChatInputProps> = ({ userId, friend }) => {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
+
+    if (isSending) return
     setIsLoading(true)
 
     try {
+      setIsSending(true)
+
       if (message.length < 1)
         return toast({
           title: 'Error',
@@ -36,20 +42,13 @@ const ChatInput: FC<ChatInputProps> = ({ userId, friend }) => {
       const res = await fetch('/api/messages/send', {
         method: 'POST',
         body: JSON.stringify({
-          chatId: `${userId}--${friend.id}`,
-          message: message
+          chatId: chatHrefConstructor(userId, friend.id),
+          text: message
         })
       })
 
       if (res.status === 200) {
-        const data = await res.text()
-        console.log(data)
         setMessage('')
-
-        return toast({
-          title: 'Success',
-          description: `Message sent succesfully`
-        })
       } else {
         const errMessage = await res.text()
         setMessage('')
@@ -82,23 +81,26 @@ const ChatInput: FC<ChatInputProps> = ({ userId, friend }) => {
       })
     } finally {
       setIsLoading(false)
+      setIsSending(false)
     }
   }
 
   return (
-    <div className='bottom-0 flex flex-col items-center justify-center w-full h-28 border-t border-neutral-300 dark:border-neutral-800'>
-      <div className='flex flex-row items-center w-full'>
+    <div className='flex flex-col items-center justify-center w-full min-h-[80px] bg-neutral-200/30 dark:bg-neutral-800/30 border-t border-neutral-200 dark:border-neutral-800'>
+      <form
+        onSubmit={handleSubmit}
+        className='flex flex-row items-center w-full h-full'
+      >
         <Input className='ml-4' onChange={handleInputChange} value={message} />
         <Button
           className='mr-4'
           type='submit'
           aria-label='send message'
           isLoading={isLoading}
-          onClick={handleSubmit}
         >
           Send
         </Button>
-      </div>
+      </form>
     </div>
   )
 }

@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils'
 
 import Button from '@/components/ui/button'
 import ThemeSwitch from '@/components/themeswitch'
-import NavBarLogo from './navbarlogo'
+// import NavBarLogo from './navbarlogo'
 
 interface NavBarProps extends HTMLAttributes<HTMLDivElement> {}
 
@@ -29,9 +29,10 @@ const LandingNavBar: FC<NavBarProps> = async ({
       <div className='w-full'>
         <Link
           href='/'
-          className='font-bold hover:text-neutral-600 dark:text-white dark:hover:text-neutral-300 transition-all ease-in-out duration-200'
+          className='font-bold text-lg hover:text-neutral-600 dark:text-white dark:hover:text-neutral-300 transition-all ease-in-out duration-200'
         >
-          <NavBarLogo />
+          {/* <NavBarLogo /> */}
+          Social Space
         </Link>
       </div>
 

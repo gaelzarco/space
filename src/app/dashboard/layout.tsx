@@ -17,11 +17,16 @@ export default async function Layout({ children }: { children: ReactNode }) {
   if (!session) return notFound()
 
   return (
-    <main className='layout-1800'>
-      <DashNavBar />
-      <div className='flex flex-row w-full flex-grow cursor-default'>
-        <DashSideBar />
-        {children}
+    <main className='layout-1800 border-l border-r border-neutral-200 dark:border-neutral-800'>
+      <div className='fixed flex flex-col self-end'>
+        <DashNavBar />
+      </div>
+
+      <div className='flex flex-row h-full max-h-screen w-full'>
+        <div className='h-screen min-w-1/4'>
+          <DashSideBar />
+        </div>
+        <div className='h-screen w-full'>{children}</div>
       </div>
     </main>
   )
