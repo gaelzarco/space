@@ -1,11 +1,9 @@
 import { type FC } from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { type Session, getServerSession } from 'next-auth'
 import { authOptions } from '@/app/api/auth/[...nextauth]/route'
 import { getFriendsByUserId } from '@/helpers/getFriendsByUserId'
-import { chatHrefConstructor } from '@/lib/utils'
 
 import Friends from './friends'
 import AddFriendsDialog from './addfriendsdialog'

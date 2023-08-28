@@ -60,7 +60,7 @@ const Friends: FC<FriendsProps> = ({ initialChatFriends, userId }) => {
           )
         })
       ) : (
-        <div className='flex flex-col justify-center h-full w-full text-neutral-400 dark:text-neutral-500 flex-grow'>
+        <div className='flex flex-col h-full w-full items-center justify-center content-center text-neutral-400 dark:text-neutral-500'>
           <p>No friends yet</p>
         </div>
       )}

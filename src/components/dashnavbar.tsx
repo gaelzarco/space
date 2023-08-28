@@ -4,7 +4,6 @@ import { authOptions } from '@/app/api/auth/[...nextauth]/route'
 import { notFound } from 'next/navigation'
 import { fetchRedis } from '@/helpers/fetchredis'
 import { getIncomingFriendRequests } from '@/helpers/getIncomingFriendRequests'
-import Link from 'next/link'
 import Image from 'next/image'
 import { cn } from '@/lib/utils'
 
@@ -46,7 +45,7 @@ const DashNavBar: FC<NavBarProps> = async ({
   return (
     <nav
       className={cn(
-        'inline-flex w-min min-h-[80px] items-center text-black dark:text-white px-5',
+        'inline-flex w-max min-h-[80px] items-center text-black dark:text-white px-5',
         className
       )}
       {...props}
