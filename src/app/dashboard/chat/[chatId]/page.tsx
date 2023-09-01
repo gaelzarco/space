@@ -9,6 +9,8 @@ import Messages from '@/components/messages'
 import ChatInput from '@/components/chatinput'
 import { CaretLeftIcon } from '@radix-ui/react-icons'
 
+export const dynamic = 'force-dynamic'
+
 export async function generateMetadata({
   params
 }: {

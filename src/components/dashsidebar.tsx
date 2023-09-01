@@ -1,11 +1,9 @@
 import { type FC } from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { type Session, getServerSession } from 'next-auth'
 import { authOptions } from '@/app/api/auth/[...nextauth]/route'
 import { getFriendsByUserId } from '@/helpers/getFriendsByUserId'
-import { chatHrefConstructor } from '@/lib/utils'
 
 import Friends from './friends'
 import AddFriendsDialog from './addfriendsdialog'
@@ -28,7 +26,7 @@ const DashSideBar: FC = async () => {
         <AddFriendsDialog />
       </div>
 
-      <div className='flex flex-col w-full mx-4 overflow-y-auto'>
+      <div className='flex flex-col h-full w-full mx-4 overflow-y-auto'>
         <Friends userId={session.user.id} initialChatFriends={friends} />
       </div>
     </div>
