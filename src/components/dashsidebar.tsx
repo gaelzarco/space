@@ -26,7 +26,7 @@ const DashSideBar: FC = async () => {
         <AddFriendsDialog />
       </div>
 
-      <div className='flex flex-col w-full mx-4 overflow-y-auto'>
+      <div className='flex flex-col h-full w-full mx-4 overflow-y-auto'>
         <Friends userId={session.user.id} initialChatFriends={friends} />
       </div>
     </div>
