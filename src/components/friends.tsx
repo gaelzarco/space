@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { chatHrefConstructor } from '@/lib/utils'
 import { pusherClient } from '@/lib/pusher'
 import { toPusherKey } from '@/lib/utils'
+import { useAutoAnimate } from '@formkit/auto-animate/react'
 
 interface FriendsProps {
   userId: string
@@ -14,6 +15,7 @@ interface FriendsProps {
 
 const Friends: FC<FriendsProps> = ({ initialChatFriends, userId }) => {
   const [friends, setFriends] = useState<User[]>(initialChatFriends)
+  const [parent] = useAutoAnimate()
 
   useEffect(() => {
     pusherClient.subscribe(toPusherKey(`user:${userId}:friends`))
@@ -31,7 +33,7 @@ const Friends: FC<FriendsProps> = ({ initialChatFriends, userId }) => {
   }, [friends])
 
   return (
-    <>
+    <div ref={parent} className='flex flex-col h-full w-full overflow-y-auto'>
       {friends.length > 0 ? (
         friends.map((friend) => {
           return (
@@ -64,7 +66,7 @@ const Friends: FC<FriendsProps> = ({ initialChatFriends, userId }) => {
           <p>No friends yet</p>
         </div>
       )}
-    </>
+    </div>
   )
 }
 

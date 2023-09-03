@@ -2,7 +2,6 @@
 
 import { type FC, useEffect, useState } from 'react'
 import Image from 'next/image'
-import { useRouter } from 'next/navigation'
 import { pusherClient } from '@/lib/pusher'
 import { toPusherKey } from '@/lib/utils'
 import { useToast } from '@/components/ui/use-toast'
@@ -33,7 +32,6 @@ const FriendRequests: FC<FriendRequestsProps> = ({
   incomingFriendRequests,
   sessionId
 }) => {
-  const router = useRouter()
   const { toast } = useToast()
   const [friendRequests, setFriendRequests] = useState<IncomingFriendRequest[]>(
     incomingFriendRequests
@@ -84,8 +82,6 @@ const FriendRequests: FC<FriendRequestsProps> = ({
         setFriendRequests((prev) =>
           prev.filter((request) => request.senderId !== senderId)
         )
-
-        router.refresh()
       }
     } catch (err) {
       if (err instanceof z.ZodError) {
@@ -124,8 +120,6 @@ const FriendRequests: FC<FriendRequestsProps> = ({
         setFriendRequests((prev) =>
           prev.filter((request) => request.senderId !== senderId)
         )
-
-        router.refresh()
       }
     } catch (err) {
       if (err instanceof z.ZodError) {
@@ -153,7 +147,7 @@ const FriendRequests: FC<FriendRequestsProps> = ({
           <CaretDownIcon className='w-4 h-4 mr-2' />
           Requests
           <div
-            className={`flex items-center content-center justify-center ml-2 rounded-full w-6 h-6 bg-neutral-200 dark:bg-neutral-900 
+            className={`flex items-center content-center justify-center ml-2 rounded-full w-7 h-7 bg-neutral-200 dark:bg-neutral-800 
             ${
               friendRequests.length > 0 &&
               'bg-green-500/10 dark:bg-green-500/20 animate-pulse'

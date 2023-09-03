@@ -5,8 +5,8 @@ import { type Session, getServerSession } from 'next-auth'
 import { authOptions } from '@/app/api/auth/[...nextauth]/route'
 import { getFriendsByUserId } from '@/helpers/getFriendsByUserId'
 
-import Friends from './friends'
-import AddFriendsDialog from './addfriendsdialog'
+import Friends from '@/components/friends'
+import ThemeSwitch from '@/components/themeswitch'
 
 const DashSideBar: FC = async () => {
   const session: Session | null = await getServerSession(authOptions)
@@ -23,10 +23,10 @@ const DashSideBar: FC = async () => {
         >
           <h1>Social Space</h1>
         </Link>
-        <AddFriendsDialog />
+        <ThemeSwitch />
       </div>
 
-      <div className='flex flex-col h-full w-full mx-4 overflow-y-auto'>
+      <div className='h-full w-full mx-4'>
         <Friends userId={session.user.id} initialChatFriends={friends} />
       </div>
     </div>

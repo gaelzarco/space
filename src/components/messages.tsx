@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { pusherClient } from '@/lib/pusher'
 import { toPusherKey } from '@/lib/utils'
 import { Message } from '@/lib/validators'
+import { useAutoAnimate } from '@formkit/auto-animate/react'
 
 interface MessageProps {
   initialMessages: Message[]
@@ -21,6 +22,7 @@ const Messages: FC<MessageProps> = ({
 }) => {
   const [messages, setMessages] = useState<Message[]>(initialMessages)
   const scrollDownRef = useRef<HTMLDivElement | null>(null)
+  const [parent] = useAutoAnimate()
 
   const scrollToBottom = () => {
     scrollDownRef.current?.scrollIntoView()
@@ -35,7 +37,7 @@ const Messages: FC<MessageProps> = ({
 
     pusherClient.bind('incoming-message', messageHandler)
 
-    scrollToBottom()
+    setTimeout(scrollToBottom, 300)
 
     return () => {
       pusherClient.unsubscribe(toPusherKey(`chat:${chatId}`))
@@ -45,10 +47,9 @@ const Messages: FC<MessageProps> = ({
 
   return (
     <div className='flex flex-col h-full w-full overflow-y-auto'>
-      <div className='flex flex-col justify-end w-full p-2'>
+      <div ref={parent} className='flex flex-col justify-end w-full p-2'>
         {messages.map((message) => {
           const isSender: boolean = message.senderId === userId
-
           return (
             <div
               key={`${message.id}-${message.timestamp}`}
@@ -58,7 +59,7 @@ const Messages: FC<MessageProps> = ({
             >
               {isSender === false && (
                 <Image
-                  className='rounded-full mr-2'
+                  className='justify-start self-start rounded-full mr-2 mt-1'
                   src={chatFriend.image}
                   alt='profile image'
                   height={40}
@@ -77,6 +78,7 @@ const Messages: FC<MessageProps> = ({
               >
                 <p className='break-words'>{message.text}</p>
               </div>
+              {/* <p className={`text-xs ${isSender ? 'self-start justify-start' : 'self-end justify-end'} text-neutral-500`}>{message.timestamp}</p> */}
             </div>
           )
         })}

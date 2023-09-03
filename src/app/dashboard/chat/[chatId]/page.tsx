@@ -76,13 +76,13 @@ const Chat: FC<ChatProps> = async ({ params }) => {
       <div className='flex flex-row text-sm items-center justify-between w-full py-2 px-3 bg-neutral-200/30 dark:bg-neutral-800/30 border-b border-neutral-200 dark:border-neutral-800'>
         <div className='text-2xl flex flex-row items-center w-full h-full font-bold dark:text-white p-2 m-2 transition-all ease-in-out duration-200'>
           <Link
-            className='flex items-center mr-4 bg-neutral-200 hover:bg-neutral-300 dark:bg-neutral-800 dark:hover:bg-neutral-900 rounded-full'
+            className='flex items-center content-center justify-center mr-4 h-6 w-6 bg-neutral-200 hover:bg-neutral-300 dark:bg-neutral-800 dark:hover:bg-neutral-900 hover:text-neutral-800 dark:hover:text-neutral-300 rounded-full transition-all ease-in-out duration-200'
             href='/dashboard'
             shallow
           >
-            <CaretLeftIcon height={20} width={20} />
+            <CaretLeftIcon height={24} width={24} />
           </Link>
-          {parsedChatFriend.name}
+          <h1 className='cursor-default'>{parsedChatFriend.name}</h1>
         </div>
       </div>
 

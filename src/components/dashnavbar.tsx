@@ -15,9 +15,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger
 } from '@/components/ui/dropdownmenu'
-import ThemeSwitcher from '@/components/themeswitch'
+import AddFriendsDialog from '@/components/addfriendsdialog'
 import LogoutOption from '@/components/logoutoption'
-// import NavBarLogo from './navbarlogo'
 import FriendRequests from './friendrequests'
 
 import { CaretDownIcon } from '@radix-ui/react-icons'
@@ -57,7 +56,7 @@ const DashNavBar: FC<NavBarProps> = async ({
             sessionId={session.user.id}
           />
 
-          <ThemeSwitcher />
+          <AddFriendsDialog />
 
           <DropdownMenu>
             <DropdownMenuTrigger className='inline-flex min-w-[142px] items-center justify-center rounded-full hover:text-neutral-600 dark:text-white dark:hover:text-neutral-300 h-8 py-5 px-6 m-2 transition-all duration-200 ease-in-out'>
