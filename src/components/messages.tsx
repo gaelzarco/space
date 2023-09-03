@@ -46,7 +46,7 @@ const Messages: FC<MessageProps> = ({
   }, [chatId, messages])
 
   return (
-    <div className='flex flex-col h-full w-full overflow-y-auto'>
+    <div className='absolute flex flex-col h-full w-full overflow-y-auto py-20 scrollbar-hide'>
       <div ref={parent} className='flex flex-col justify-end w-full p-2'>
         {messages.map((message) => {
           const isSender: boolean = message.senderId === userId
@@ -68,7 +68,7 @@ const Messages: FC<MessageProps> = ({
               )}
               <div
                 className={`
-                max-w-sm rounded-3xl py-3 px-4
+                max-md:max-w-[290px] lg:max-lg:max-w-xs max-w-lg rounded-3xl py-3 px-4
                 ${
                   isSender
                     ? 'text-white bg-blue-400 dark:bg-blue-400'

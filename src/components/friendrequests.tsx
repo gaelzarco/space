@@ -141,13 +141,13 @@ const FriendRequests: FC<FriendRequestsProps> = ({
   }
 
   return (
-    <div className='flex flex-wrap items-center content-center justify-center'>
+    <div className='flex items-center content-center justify-center'>
       <DropdownMenu>
-        <DropdownMenuTrigger className='inline-flex min-w-[142px] items-center justify-center rounded-full hover:text-neutral-600 dark:text-white dark:hover:text-neutral-300 h-8 py-5 px-6 mr-2 transition-all duration-200 ease-in-out'>
+        <DropdownMenuTrigger className='font-medium inline-flex min-w-[142px] items-center justify-center rounded-full dark:text-white h-8 py-5 px-6 mr-2 transition-all duration-200 ease-in-out hover:text-neutral-700 dark:hover:text-neutral-300'>
           <CaretDownIcon className='w-4 h-4 mr-2' />
           Requests
           <div
-            className={`flex items-center content-center justify-center ml-2 rounded-full w-7 h-7 bg-neutral-200 dark:bg-neutral-800 
+            className={`font-normal flex items-center content-center justify-center ml-2 rounded-full w-7 h-7 bg-neutral-200/70 dark:bg-neutral-800/70 
             ${
               friendRequests.length > 0 &&
               'bg-green-500/10 dark:bg-green-500/20 animate-pulse'
