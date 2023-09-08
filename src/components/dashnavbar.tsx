@@ -44,13 +44,13 @@ const DashNavBar: FC<NavBarProps> = async ({
   return (
     <nav
       className={cn(
-        'inline-flex max-xl:w-full xl:w-max xl:min-h-[80px] items-center text-black dark:text-white max-xl:px-2 xl:px-5',
+        'inline-flex w-max min-h-[80px] items-center text-black dark:text-white px-5',
         className
       )}
       {...props}
     >
       {!!session && (
-        <div className='max-xl:flex max-xl:flex-row-reverse xl:inline-flex max-xl:w-full items-center max-xl:justify-between justify-self-end'>
+        <div className='inline-flex items-center justify-self-end'>
           <FriendRequests
             incomingFriendRequests={incomingFriendRequests}
             sessionId={session.user.id}
@@ -58,9 +58,9 @@ const DashNavBar: FC<NavBarProps> = async ({
 
           <AddFriendsDialog />
 
-          <div className='max-xl:hidden'>
+          <div>
             <DropdownMenu>
-              <DropdownMenuTrigger className='inline-flex min-w-[142px] items-center justify-center rounded-full dark:text-white hover:text-neutral-700 dark:hover:text-neutral-300 h-8 py-5 px-6 m-2 transition-all duration-200 ease-in-out'>
+              <DropdownMenuTrigger className='inline-flex items-center justify-center rounded-full dark:text-white hover:text-neutral-700 dark:hover:text-neutral-300 h-8 py-5 px-6 m-2 transition-all duration-200 ease-in-out'>
                 <div className='inline-flex items-center content-center justify-center'>
                   <CaretDownIcon className='w-4 h-4 mr-2' />
 

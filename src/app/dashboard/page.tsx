@@ -25,17 +25,10 @@ const Dashboard: FC = async () => {
         </div>
       </div>
 
-      <div className='max-xl:hidden w-full h-full flex items-center content-center justify-center'>
+      <div className='w-full h-full flex items-center content-center justify-center'>
         <h1 className=' text-md mb-2 text-neutral-400 dark:text-neutral-500'>
           See what your friends are saying
         </h1>
-      </div>
-
-      <div className='xl:hidden flex flex-col w-full h-full'>
-        <div className='min-w-full'>
-          <DashNavBar />
-        </div>
-        <Friends initialChatFriends={friends} userId={session.user.id} />
       </div>
     </div>
   )

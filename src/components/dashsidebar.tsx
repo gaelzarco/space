@@ -15,7 +15,7 @@ const DashSideBar: FC = async () => {
   const friends = await getFriendsByUserId(session.user.id)
 
   return (
-    <div className='flex flex-col items-center h-full min-w-[400px] border-r border-neutral-200 dark:border-neutral-800 '>
+    <div className='flex flex-col items-center h-full min-w-[320px] xl:min-w-[400px] border-r border-neutral-200 dark:border-neutral-800 transition-all ease-in-out duration-200'>
       <div className='flex flex-row text-sm h-22 py-2 items-center justify-between w-full px-3 border-b border-neutral-200 dark:border-neutral-800 transition-all ease-in-out duration-200'>
         <Link
           href='/'

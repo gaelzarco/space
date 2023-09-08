@@ -73,7 +73,7 @@ const Chat: FC<ChatProps> = async ({ params }) => {
 
   return (
     <div className='relative flex flex-col items-center justify-between w-full h-screen max-h-screen'>
-      <div className='static top-0 flex flex-row text-sm items-center justify-between w-full py-2 px-3 max-xl:px-0 max-xl:py-1 backdrop-blur-xl bg-neutral-100/70 dark:bg-neutral-950/70 z-10'>
+      <div className='static top-0 flex flex-row text-sm items-center justify-between w-full py-2 px-3 backdrop-blur-xl bg-neutral-100/70 dark:bg-neutral-950/70 z-10'>
         <div className='text-2xl flex flex-row items-center bg-transparent w-full h-full font-bold dark:text-white p-2 m-2 transition-all ease-in-out duration-200'>
           <Link
             className='flex items-center content-center justify-center mr-4 h-7 w-7 bg-neutral-200/70 dark:bg-neutral-800/70 hover:bg-neutral-300/70 dark:hover:bg-neutral-900/70 rounded-full '
