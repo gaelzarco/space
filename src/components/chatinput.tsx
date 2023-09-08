@@ -1,6 +1,13 @@
 'use client'
 
-import { type FC, type FormEvent, type ChangeEvent, useState } from 'react'
+import {
+  type FC,
+  type FormEvent,
+  type ChangeEvent,
+  useState,
+  useRef,
+  useEffect
+} from 'react'
 import { useToast } from '@/components/ui/use-toast'
 import { z } from 'zod'
 
@@ -18,6 +25,7 @@ const ChatInput: FC<ChatInputProps> = ({ userId, friend }) => {
   const [message, setMessage] = useState<string>('')
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [isSending, setIsSending] = useState<boolean>(false)
+  const inputRef = useRef<HTMLInputElement | null>(null)
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setMessage(e.target.value)
@@ -85,13 +93,26 @@ const ChatInput: FC<ChatInputProps> = ({ userId, friend }) => {
     }
   }
 
+  const focusInput = () => {
+    inputRef.current?.focus()
+  }
+
+  useEffect(() => {
+    focusInput()
+  }, [])
+
   return (
-    <div className='sticky flex flex-col items-center justify-center w-full py-2 max-xl:py-1 bg-neutral-100/70 dark:bg-neutral-950/70 backdrop-blur-3xl z-20'>
+    <div className='sticky flex flex-col items-center justify-center w-full py-2 max-xl:py-1 bg-neutral-100/70 dark:bg-neutral-950/70 backdrop-blur-xl z-20'>
       <form
         onSubmit={handleSubmit}
         className='flex flex-row items-center w-full h-full'
       >
-        <Input className='ml-4' onChange={handleInputChange} value={message} />
+        <Input
+          className='ml-4'
+          ref={inputRef}
+          onChange={handleInputChange}
+          value={message}
+        />
         <Button
           className='mr-4'
           type='submit'

@@ -29,6 +29,8 @@ const Messages: FC<MessageProps> = ({
   }
 
   useEffect(() => {
+    scrollToBottom()
+
     pusherClient.subscribe(toPusherKey(`chat:${chatId}`))
 
     const messageHandler = (message: Message) => {
@@ -37,7 +39,7 @@ const Messages: FC<MessageProps> = ({
 
     pusherClient.bind('incoming-message', messageHandler)
 
-    setTimeout(scrollToBottom, 300)
+    setTimeout(scrollToBottom, 280)
 
     return () => {
       pusherClient.unsubscribe(toPusherKey(`chat:${chatId}`))
