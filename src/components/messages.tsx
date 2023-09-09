@@ -96,8 +96,8 @@ const Messages: FC<MessageProps> = ({
                 <p
                   className={`text-sm ${
                     isSender
-                      ? 'self-end justify-end mr-1'
-                      : 'self-start justify-start ml-1'
+                      ? 'self-end justify-end mr-3'
+                      : 'self-start justify-start ml-16'
                   } text-neutral-400 mt-3`}
                 >
                   {dayjs().to(dayjs(message.timestamp))}
