@@ -147,7 +147,7 @@ const FriendRequests: FC<FriendRequestsProps> = ({
           <CaretDownIcon className='w-4 h-4 mr-1 xl:mr-2' />
           <p className='max-xl:hidden'>Requests</p>
           <div
-            className={`font-normal flex items-center content-center justify-center xl:ml-2 rounded-full w-7 h-7 bg-neutral-200/70 dark:bg-neutral-800/70 
+            className={`font-normal flex items-center content-center justify-center xl:ml-2 rounded-full w-7 h-7 bg-neutral-200/70 dark:bg-neutral-800/70
             ${
               friendRequests.length > 0 &&
               'bg-green-500/10 dark:bg-green-500/20 animate-pulse'
