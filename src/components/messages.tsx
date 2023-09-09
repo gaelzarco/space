@@ -6,6 +6,9 @@ import { pusherClient } from '@/lib/pusher'
 import { toPusherKey } from '@/lib/utils'
 import { Message } from '@/lib/validators'
 import { useAutoAnimate } from '@formkit/auto-animate/react'
+import dayjs from 'dayjs'
+import relativeTime from 'dayjs/plugin/relativeTime'
+dayjs.extend(relativeTime)
 
 interface MessageProps {
   initialMessages: Message[]
@@ -97,7 +100,7 @@ const Messages: FC<MessageProps> = ({
                       : 'self-start justify-start ml-1'
                   } text-neutral-400 mt-3`}
                 >
-                  {message.timestamp}
+                  {dayjs().to(dayjs(message.timestamp))}
                 </p>
               )}
             </div>
