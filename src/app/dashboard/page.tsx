@@ -2,17 +2,12 @@ import { type FC } from 'react'
 import { getServerSession, Session } from 'next-auth'
 import { notFound } from 'next/navigation'
 import { authOptions } from '@/app/api/auth/[...nextauth]/route'
-import { getFriendsByUserId } from '@/helpers/getFriendsByUserId'
 
-import Friends from '@/components/friends'
 import ThemeSwitch from '@/components/themeswitch'
-import DashNavBar from '@/components/dashnavbar'
 
 const Dashboard: FC = async () => {
   const session: Session | null = await getServerSession(authOptions)
   if (!session) return notFound()
-
-  const friends = await getFriendsByUserId(session.user.id)
 
   return (
     <div className='flex flex-col h-full w-full'>
