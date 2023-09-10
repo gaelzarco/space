@@ -3,7 +3,7 @@
 import { type FC, useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
 import { pusherClient } from '@/lib/pusher'
-import { toPusherKey } from '@/lib/utils'
+import { toPusherKey, checkIfPastDay } from '@/lib/utils'
 import { Message } from '@/lib/validators'
 import { useAutoAnimate } from '@formkit/auto-animate/react'
 import dayjs from 'dayjs'
@@ -58,6 +58,10 @@ const Messages: FC<MessageProps> = ({
 
           const isSender: boolean = message.senderId === userId
           const isSameUser: boolean = message.senderId === nextMessage?.senderId
+          const ifPastDay: boolean = checkIfPastDay(
+            message.timestamp,
+            nextMessage?.timestamp
+          )
 
           return (
             <div
@@ -92,13 +96,13 @@ const Messages: FC<MessageProps> = ({
                 </div>
               </div>
 
-              {!isSameUser && (
+              {(!isSameUser || ifPastDay) && (
                 <p
-                  className={`text-sm ${
+                  className={`text-sm text-neutral-400 mt-1 ${
                     isSender
                       ? 'self-end justify-end mr-3'
                       : 'self-start justify-start ml-16'
-                  } text-neutral-400 mt-3`}
+                  } ${ifPastDay && 'pb-8'}`}
                 >
                   {dayjs().to(dayjs(message.timestamp))}
                 </p>
