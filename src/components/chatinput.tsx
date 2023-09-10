@@ -106,15 +106,20 @@ const ChatInput: FC<ChatInputProps> = ({ userId, friend }) => {
       <form
         onSubmit={handleSubmit}
         className='flex flex-row items-center w-full h-full'
+        name='message form'
+        aria-label='message form'
       >
         <Input
           className='ml-4'
           ref={inputRef}
+          name='message input'
+          aria-label='type message'
           onChange={handleInputChange}
           value={message}
         />
         <Button
           className='mr-4'
+          name='send message button'
           type='submit'
           aria-label='send message'
           isLoading={isLoading}
