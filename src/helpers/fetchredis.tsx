@@ -13,7 +13,10 @@ export async function fetchRedis(
     headers: {
       Authorization: `Bearer ${authToken}`
     },
-    cache: 'no-store'
+    // cache: 'no-store',
+    next: {
+      revalidate: 0
+    }
   })
 
   if (!response.ok) {

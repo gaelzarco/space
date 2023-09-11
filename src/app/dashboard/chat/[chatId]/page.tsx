@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'
+
 import { type FC } from 'react'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
@@ -8,8 +10,6 @@ import { fetchRedis } from '@/helpers/fetchredis'
 import Messages from '@/components/messages'
 import ChatInput from '@/components/chatinput'
 import { CaretLeftIcon } from '@radix-ui/react-icons'
-
-export const dynamic = 'force-dynamic'
 
 export async function generateMetadata({
   params
@@ -92,6 +92,7 @@ const Chat: FC<ChatProps> = async ({ params }) => {
         chatFriend={parsedChatFriend}
         initialMessages={initialMessages}
       />
+
       <ChatInput userId={session.user.id} friend={parsedChatFriend} />
     </div>
   )

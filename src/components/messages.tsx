@@ -102,7 +102,7 @@ const Messages: FC<MessageProps> = ({
                     isSender
                       ? 'self-end justify-end mr-3'
                       : 'self-start justify-start ml-16'
-                  } ${ifPastDay && 'pb-8'}`}
+                  } ${ifPastDay && 'pb-4'}`}
                 >
                   {dayjs().to(dayjs(message.timestamp))}
                 </p>

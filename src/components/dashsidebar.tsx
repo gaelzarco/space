@@ -27,7 +27,7 @@ const DashSideBar: FC = async () => {
       </div>
 
       <div className='h-full w-full mx-4'>
-        <Friends userId={session.user.id} initialChatFriends={friends} />
+        <Friends userId={session.user.id} initialFriends={friends} />
       </div>
     </div>
   )
