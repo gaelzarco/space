@@ -10,5 +10,5 @@ body {
 }
 
 .layout-1800 {
-  @apply flex flex-col max-w-[1890px] w-full max-h-screen mx-auto;
+  @apply flex flex-col w-full max-h-screen mx-auto;
 }

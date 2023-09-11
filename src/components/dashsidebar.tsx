@@ -5,8 +5,8 @@ import { type Session, getServerSession } from 'next-auth'
 import { authOptions } from '@/app/api/auth/[...nextauth]/route'
 import { getFriendsByUserId } from '@/helpers/getFriendsByUserId'
 
-import Friends from './friends'
-import AddFriendsDialog from './addfriendsdialog'
+import Friends from '@/components/friends'
+import ThemeSwitch from '@/components/themeswitch'
 
 const DashSideBar: FC = async () => {
   const session: Session | null = await getServerSession(authOptions)
@@ -15,19 +15,19 @@ const DashSideBar: FC = async () => {
   const friends = await getFriendsByUserId(session.user.id)
 
   return (
-    <div className='flex flex-col items-center h-full min-w-[400px] border-r border-neutral-200 dark:border-neutral-800'>
+    <div className='flex flex-col items-center h-full min-w-[320px] xl:min-w-[400px] border-r border-neutral-200 dark:border-neutral-800'>
       <div className='flex flex-row text-sm h-22 py-2 items-center justify-between w-full px-3 border-b border-neutral-200 dark:border-neutral-800'>
         <Link
-          href='/dashboard'
-          className='text-2xl font-bold justify-self-start hover:text-neutral-600 dark:text-white dark:hover:text-neutral-300 p-2 m-2 transition-all ease-in-out duration-200'
+          href='/'
+          className='text-2xl font-bold justify-self-start dark:text-white hover:text-neutral-600 dark:hover:text-neutral-300 p-2 m-2'
         >
           <h1>Social Space</h1>
         </Link>
-        <AddFriendsDialog />
+        <ThemeSwitch />
       </div>
 
-      <div className='flex flex-col h-full w-full mx-4 overflow-y-auto'>
-        <Friends userId={session.user.id} initialChatFriends={friends} />
+      <div className='h-full w-full mx-4'>
+        <Friends userId={session.user.id} initialFriends={friends} />
       </div>
     </div>
   )

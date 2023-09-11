@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'
+
 import { type FC } from 'react'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
@@ -8,8 +10,6 @@ import { fetchRedis } from '@/helpers/fetchredis'
 import Messages from '@/components/messages'
 import ChatInput from '@/components/chatinput'
 import { CaretLeftIcon } from '@radix-ui/react-icons'
-
-export const dynamic = 'force-dynamic'
 
 export async function generateMetadata({
   params
@@ -72,17 +72,17 @@ const Chat: FC<ChatProps> = async ({ params }) => {
   const initialMessages = await getChatMessages(chatId)
 
   return (
-    <div className='flex flex-col items-center justify-between w-full h-screen max-h-screen'>
-      <div className='flex flex-row text-sm items-center justify-between w-full py-2 px-3 bg-neutral-200/30 dark:bg-neutral-800/30 border-b border-neutral-200 dark:border-neutral-800'>
-        <div className='text-2xl flex flex-row items-center w-full h-full font-bold dark:text-white p-2 m-2 transition-all ease-in-out duration-200'>
+    <div className='relative flex flex-col items-center justify-between w-full h-screen max-h-screen'>
+      <div className='static top-0 flex flex-row text-sm items-center justify-between w-full py-2 px-3 backdrop-blur-xl bg-neutral-100/70 dark:bg-neutral-950/70 z-10'>
+        <div className='text-2xl flex flex-row items-center bg-transparent w-full h-full font-bold dark:text-white p-2 m-2 transition-all ease-in-out duration-200'>
           <Link
-            className='flex items-center mr-4 bg-neutral-200 hover:bg-neutral-300 dark:bg-neutral-800 dark:hover:bg-neutral-900 rounded-full'
+            className='flex items-center content-center justify-center mr-4 h-7 w-7 bg-neutral-200/70 dark:bg-neutral-800/70 hover:bg-neutral-300/70 dark:hover:bg-neutral-900/70 rounded-full '
             href='/dashboard'
             shallow
           >
-            <CaretLeftIcon height={20} width={20} />
+            <CaretLeftIcon height={24} width={24} />
           </Link>
-          {parsedChatFriend.name}
+          <h1 className='cursor-default'>{parsedChatFriend.name}</h1>
         </div>
       </div>
 
@@ -92,6 +92,7 @@ const Chat: FC<ChatProps> = async ({ params }) => {
         chatFriend={parsedChatFriend}
         initialMessages={initialMessages}
       />
+
       <ChatInput userId={session.user.id} friend={parsedChatFriend} />
     </div>
   )

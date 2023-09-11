@@ -15,9 +15,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger
 } from '@/components/ui/dropdownmenu'
-import ThemeSwitcher from '@/components/themeswitch'
+import AddFriendsDialog from '@/components/addfriendsdialog'
 import LogoutOption from '@/components/logoutoption'
-// import NavBarLogo from './navbarlogo'
 import FriendRequests from './friendrequests'
 
 import { CaretDownIcon } from '@radix-ui/react-icons'
@@ -51,43 +50,45 @@ const DashNavBar: FC<NavBarProps> = async ({
       {...props}
     >
       {!!session && (
-        <div className='inline-flex items-center content-center justify-self-end'>
+        <div className='inline-flex items-center justify-self-end'>
           <FriendRequests
             incomingFriendRequests={incomingFriendRequests}
             sessionId={session.user.id}
           />
 
-          <ThemeSwitcher />
+          <AddFriendsDialog />
 
-          <DropdownMenu>
-            <DropdownMenuTrigger className='inline-flex min-w-[142px] items-center justify-center rounded-full hover:text-neutral-600 dark:text-white dark:hover:text-neutral-300 h-8 py-5 px-6 m-2 transition-all duration-200 ease-in-out'>
-              <div className='inline-flex items-center content-center justify-center'>
-                <CaretDownIcon className='w-4 h-4 mr-2' />
+          <div>
+            <DropdownMenu>
+              <DropdownMenuTrigger className='inline-flex items-center justify-center rounded-full dark:text-white hover:text-neutral-700 dark:hover:text-neutral-300 h-8 py-5 px-6 m-2 transition-all duration-200 ease-in-out'>
+                <div className='inline-flex items-center content-center justify-center'>
+                  <CaretDownIcon className='w-4 h-4 mr-2' />
 
-                <div className='flex flex-col h-full mr-2'>
-                  <p className='font-semibold'>{session.user.name}</p>
+                  <div className='flex flex-col h-full mr-2'>
+                    <p className='font-semibold'>{session.user.name}</p>
+                  </div>
+
+                  <div>
+                    <Image
+                      className='rounded-full'
+                      src={session.user.image as string}
+                      width={30}
+                      height={30}
+                      alt='Profile'
+                    />
+                  </div>
                 </div>
+              </DropdownMenuTrigger>
 
-                <div>
-                  <Image
-                    className='rounded-full'
-                    src={session.user.image as string}
-                    width={30}
-                    height={30}
-                    alt='Profile'
-                  />
-                </div>
-              </div>
-            </DropdownMenuTrigger>
-
-            <DropdownMenuContent className='box-content'>
-              <DropdownMenuLabel>Account</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem className='cursor-pointer'>
-                <LogoutOption />
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+              <DropdownMenuContent className='box-content'>
+                <DropdownMenuLabel>Account</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem className='cursor-pointer'>
+                  <LogoutOption />
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
         </div>
       )}
     </nav>

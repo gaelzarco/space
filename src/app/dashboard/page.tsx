@@ -1,16 +1,16 @@
 import { type FC } from 'react'
 
-const Dashboard: FC = () => {
+const Dashboard: FC = async () => {
   return (
-    <div className='flex flex-col h-full w-full  text-sm'>
-      <div className='flex flex-row text-sm items-center justify-between w-full h-22 py-2 px-3 bg-neutral-200/30 dark:bg-neutral-800/30 border-b border-neutral-200 dark:border-neutral-800'>
-        <div className='text-2xl flex flex-row items-center w-full h-full font-bold dark:text-white p-2 m-2 transition-all ease-in-out duration-200'>
+    <div className='flex flex-col h-full w-full'>
+      <div className='static top-0 flex flex-row text-sm items-center justify-between w-full py-2 px-3 backdrop-blur-xl bg-neutral-100/70 dark:bg-neutral-950/70 z-10'>
+        <div className='cursor-default text-2xl flex flex-row items-center justify-between w-full h-full font-bold dark:text-white p-2 m-2'>
           Dashboard
         </div>
       </div>
 
       <div className='w-full h-full flex items-center content-center justify-center'>
-        <h1 className='text-lg mb-2 text-neutral-400 dark:text-neutral-500'>
+        <h1 className=' text-md mb-2 text-neutral-400 dark:text-neutral-500'>
           See what your friends are saying
         </h1>
       </div>

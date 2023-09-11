@@ -2,7 +2,6 @@
 
 import { type FC, useEffect, useState } from 'react'
 import Image from 'next/image'
-import { useRouter } from 'next/navigation'
 import { pusherClient } from '@/lib/pusher'
 import { toPusherKey } from '@/lib/utils'
 import { useToast } from '@/components/ui/use-toast'
@@ -33,7 +32,6 @@ const FriendRequests: FC<FriendRequestsProps> = ({
   incomingFriendRequests,
   sessionId
 }) => {
-  const router = useRouter()
   const { toast } = useToast()
   const [friendRequests, setFriendRequests] = useState<IncomingFriendRequest[]>(
     incomingFriendRequests
@@ -84,8 +82,6 @@ const FriendRequests: FC<FriendRequestsProps> = ({
         setFriendRequests((prev) =>
           prev.filter((request) => request.senderId !== senderId)
         )
-
-        router.refresh()
       }
     } catch (err) {
       if (err instanceof z.ZodError) {
@@ -124,8 +120,6 @@ const FriendRequests: FC<FriendRequestsProps> = ({
         setFriendRequests((prev) =>
           prev.filter((request) => request.senderId !== senderId)
         )
-
-        router.refresh()
       }
     } catch (err) {
       if (err instanceof z.ZodError) {
@@ -147,13 +141,13 @@ const FriendRequests: FC<FriendRequestsProps> = ({
   }
 
   return (
-    <div className='flex flex-wrap items-center content-center justify-center'>
+    <div className='flex items-center content-center justify-center'>
       <DropdownMenu>
-        <DropdownMenuTrigger className='inline-flex min-w-[142px] items-center justify-center rounded-full hover:text-neutral-600 dark:text-white dark:hover:text-neutral-300 h-8 py-5 px-6 mr-2 transition-all duration-200 ease-in-out'>
-          <CaretDownIcon className='w-4 h-4 mr-2' />
-          Requests
+        <DropdownMenuTrigger className='font-medium inline-flex max-xl:min-w-[100px] min-w-[142px] items-center justify-center rounded-full dark:text-white h-8 py-5 px-6 xl:mr-2 transition-all duration-200 ease-in-out hover:text-neutral-700 dark:hover:text-neutral-300'>
+          <CaretDownIcon className='w-4 h-4 mr-1 xl:mr-2' />
+          <p className='max-xl:hidden'>Requests</p>
           <div
-            className={`flex items-center content-center justify-center ml-2 rounded-full w-6 h-6 bg-neutral-200 dark:bg-neutral-900 
+            className={`font-normal flex items-center content-center justify-center xl:ml-2 rounded-full w-7 h-7 bg-neutral-200/70 dark:bg-neutral-800/70
             ${
               friendRequests.length > 0 &&
               'bg-green-500/10 dark:bg-green-500/20 animate-pulse'

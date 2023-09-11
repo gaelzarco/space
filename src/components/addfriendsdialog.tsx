@@ -68,7 +68,7 @@ const AddFriendsDialog: FC = () => {
   return (
     <Dialog>
       <DialogTrigger
-        className='inline-flex items-center w-[142px] h-8 justify-center content-center bg-neutral-200 hover:bg-neutral-300 dark:bg-neutral-800 dark:hover:bg-neutral-900 dark:text-white px-6 py-5 m-0 rounded-full transition-all duration-200 ease-in-out'
+        className='inline-flex items-center text-sm max-xl:w-[100px] w-[142px] h-8 justify-center content-center bg-neutral-200/70 dark:bg-neutral-800/70 hover:bg-neutral-300/70 dark:hover:bg-neutral-900/70 dark:text-white px-6 py-5 m-0 rounded-full transition-all duration-200 ease-in-out'
         onClick={() => setError(null)}
       >
         Add

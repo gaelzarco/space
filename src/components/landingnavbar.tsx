@@ -29,16 +29,13 @@ const LandingNavBar: FC<NavBarProps> = async ({
       <div className='w-full'>
         <Link
           href='/'
-          className='font-bold text-lg hover:text-neutral-600 dark:text-white dark:hover:text-neutral-300 transition-all ease-in-out duration-200'
+          className='ml-2 font-bold text-lg hover:text-neutral-600 dark:text-white dark:hover:text-neutral-300 transition-all ease-in-out duration-200'
         >
-          {/* <NavBarLogo /> */}
           Social Space
         </Link>
       </div>
 
-      <div className='inline-flex w-full items-center content-center justify-center justify-self-center'>
-        <ThemeSwitch />
-      </div>
+      <ThemeSwitch />
 
       <div className='w-full flex justify-self-end justify-end'>
         {!session ? (

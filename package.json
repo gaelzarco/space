@@ -12,6 +12,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@formkit/auto-animate": "^0.7.0",
     "@hookform/resolvers": "^3.1.1",
     "@next-auth/upstash-redis-adapter": "^3.0.4",
     "@radix-ui/react-dialog": "^1.0.4",
@@ -29,6 +30,7 @@
     "autoprefixer": "10.4.14",
     "class-variance-authority": "^0.6.1",
     "clsx": "^1.2.1",
+    "dayjs": "^1.11.9",
     "eslint-config-next": "13.4.9",
     "next": "^13.4.12",
     "next-auth": "^4.22.1",
@@ -39,6 +41,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "tailwind-merge": "^1.13.2",
+    "tailwind-scrollbar-hide": "^1.1.7",
     "tailwindcss": "3.3.2",
     "tailwindcss-animate": "^1.0.6",
     "zod": "^3.21.4"
