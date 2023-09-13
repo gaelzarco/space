@@ -1,9 +1,10 @@
 'use client'
 
 import { type FC, useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import { pusherClient } from '@/lib/pusher'
-import { toPusherKey } from '@/lib/utils'
+import { toPusherKey, chatHrefConstructor } from '@/lib/utils'
 import { useToast } from '@/components/ui/use-toast'
 import { z } from 'zod'
 
@@ -32,26 +33,24 @@ const FriendRequests: FC<FriendRequestsProps> = ({
   incomingFriendRequests,
   sessionId
 }) => {
-  const { toast } = useToast()
   const [friendRequests, setFriendRequests] = useState<IncomingFriendRequest[]>(
     incomingFriendRequests
   )
+  const router = useRouter()
+  const { toast } = useToast()
 
   useEffect(() => {
     pusherClient.subscribe(
       toPusherKey(`user:${sessionId}:incoming_friend_requests`)
     )
 
-    const friendRequestHandler = ({
-      senderId,
-      senderEmail,
-      senderName,
-      senderImage
-    }: IncomingFriendRequest) => {
-      setFriendRequests((prev) => [
-        ...prev,
-        { senderId, senderEmail, senderName, senderImage }
-      ])
+    const friendRequestHandler = (incomingFriend: IncomingFriendRequest) => {
+      setFriendRequests((prev) => [...prev, { ...incomingFriend }])
+
+      toast({
+        title: `Received friend request`,
+        description: `${incomingFriend.senderName} sent you a friend request`
+      })
     }
 
     pusherClient.bind('incoming_friend_requests', friendRequestHandler)
@@ -73,7 +72,6 @@ const FriendRequests: FC<FriendRequestsProps> = ({
 
       if (res.status === 200) {
         toast({
-          className: 'hover:cursor-pointer',
           title: `Friend request accepted`,
           description: `${friendRequests.find(
             (request) => request.senderId === senderId

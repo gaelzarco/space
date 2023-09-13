@@ -49,16 +49,12 @@ const Friends: FC<FriendsProps> = ({ initialFriends, userId }) => {
       setUnseenMessages((prev) => [...prev, message])
 
       toast({
-        className: 'hover:cursor-pointer',
         title: `${message.senderName} sent you a message.`,
         description: `${
           message.text.length > 50
             ? message.text.slice(0, 50) + '...'
             : message.text
-        }`,
-        onClick: () => {
-          router.push(currentRoute)
-        }
+        }`
       })
     }
 
@@ -89,11 +85,18 @@ const Friends: FC<FriendsProps> = ({ initialFriends, userId }) => {
           const unseenMessagesLength = unseenMessages.filter(
             (msg) => msg.senderId === friend.id
           ).length
+          const currentRoute = `/dashboard/chat/${chatHrefConstructor(
+            userId,
+            friend.id
+          )}`
           return (
             <Link
               key={friend.id}
               href={`/dashboard/chat/${chatHrefConstructor(userId, friend.id)}`}
-              className='cursor-pointer inline-flex justify-between items-center w-inherit h-16 content-center hover:bg-neutral-200 dark:hover:bg-neutral-900 dark:text-white px-6 py-5 m-2 rounded-xl transition-all duration-200 ease-in-out'
+              className={`cursor-pointer inline-flex justify-between items-center w-inherit h-16 content-center hover:bg-neutral-200 dark:hover:bg-neutral-900 dark:text-white px-6 py-5 m-2 rounded-xl transition-all duration-200 ease-in-out ${
+                currentRoute === pathname &&
+                'bg-neutral-200 dark:bg-neutral-900 dark:text-white'
+              }`}
               shallow
             >
               <div className='flex flex-row items-center mr-6'>

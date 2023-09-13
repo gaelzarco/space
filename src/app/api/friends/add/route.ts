@@ -56,7 +56,9 @@ export async function POST(req: NextRequest) {
       'incoming_friend_requests',
       {
         senderId: session.user.id,
-        senderEmail: session.user.email
+        senderEmail: session.user.email,
+        senderName: session.user.name,
+        senderImage: session.user.image
       }
     )
 
