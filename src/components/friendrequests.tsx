@@ -73,6 +73,7 @@ const FriendRequests: FC<FriendRequestsProps> = ({
 
       if (res.status === 200) {
         toast({
+          className: 'hover:cursor-pointer',
           title: `Friend request accepted`,
           description: `${friendRequests.find(
             (request) => request.senderId === senderId

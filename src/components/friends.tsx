@@ -39,20 +39,26 @@ const Friends: FC<FriendsProps> = ({ initialFriends, userId }) => {
     }
 
     const chatHandler = (message: ExtendedMessage) => {
-      const shouldNotify: boolean =
-        pathname !==
-        `/dashboard/chat/${chatHrefConstructor(userId, message.senderId)}`
+      const currentRoute = `/dashboard/chat/${chatHrefConstructor(
+        userId,
+        message.senderId
+      )}`
+      const shouldNotify: boolean = pathname !== currentRoute
 
       if (!shouldNotify) return
       setUnseenMessages((prev) => [...prev, message])
 
       toast({
+        className: 'hover:cursor-pointer',
         title: `${message.senderName} sent you a message.`,
         description: `${
           message.text.length > 50
             ? message.text.slice(0, 50) + '...'
             : message.text
-        }`
+        }`,
+        onClick: () => {
+          router.push(currentRoute)
+        }
       })
     }
 
@@ -80,6 +86,9 @@ const Friends: FC<FriendsProps> = ({ initialFriends, userId }) => {
     <div ref={parent} className='flex flex-col h-full w-full overflow-y-auto'>
       {friends.length > 0 ? (
         friends.map((friend) => {
+          const unseenMessagesLength = unseenMessages.filter(
+            (msg) => msg.senderId === friend.id
+          ).length
           return (
             <Link
               key={friend.id}
@@ -103,13 +112,9 @@ const Friends: FC<FriendsProps> = ({ initialFriends, userId }) => {
                 </div>
               </div>
 
-              {unseenMessages.filter((msg) => msg.senderId === friend.id)
-                .length > 0 && (
+              {unseenMessagesLength > 0 && (
                 <div className='flex items-center justify-center content-center rounded-full w-7 h-7 bg-blue-400/20 dark:bg-blue-400/20'>
-                  {
-                    unseenMessages.filter((msg) => msg.senderId === friend.id)
-                      .length
-                  }
+                  {unseenMessagesLength}
                 </div>
               )}
             </Link>
