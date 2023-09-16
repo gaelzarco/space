@@ -26,7 +26,7 @@ const LandingNavBar: FC<NavBarProps> = async ({
       )}
       {...props}
     >
-      <div className='w-full'>
+      <div className='max-md:hidden w-full'>
         <Link
           href='/'
           className='ml-2 font-bold text-lg hover:text-neutral-600 dark:text-white dark:hover:text-neutral-300 transition-all ease-in-out duration-200'
