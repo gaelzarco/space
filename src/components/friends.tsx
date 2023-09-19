@@ -97,7 +97,7 @@ const Friends: FC<FriendsProps> = ({ initialFriends, userId }) => {
                 currentRoute === pathname &&
                 'bg-neutral-200 dark:bg-neutral-900 dark:text-white'
               }`}
-              shallow
+              shallow={true}
             >
               <div className='flex flex-row items-center mr-6'>
                 <div className='flex items-center content-center justify-center flex-row mr-4'>
