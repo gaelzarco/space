@@ -1,3 +1,5 @@
+export const revalidate = 0
+
 import { type FC } from 'react'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
@@ -67,7 +69,7 @@ const Chat: FC<ChatProps> = async ({ params }) => {
 
   const chatFriend = (await fetchRedis('get', `user:${chatFriendId}`)) as string
   const parsedChatFriend = JSON.parse(chatFriend) as User
-  const initialMessages = await getChatMessages(chatId)
+  let initialMessages = await getChatMessages(chatId)
 
   return (
     <div className='relative flex flex-col items-center justify-between w-full h-screen max-h-screen'>

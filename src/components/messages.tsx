@@ -31,15 +31,14 @@ const Messages: FC<MessageProps> = ({
     scrollDownRef.current?.scrollIntoView()
   }
 
+  const messageHandler = (message: Message) => {
+    setMessages((prev) => [...prev, message])
+  }
+
   useEffect(() => {
     scrollToBottom()
 
     pusherClient.subscribe(toPusherKey(`chat:${chatId}`))
-
-    const messageHandler = (message: Message) => {
-      setMessages((prev) => [...prev, message])
-    }
-
     pusherClient.bind('incoming-message', messageHandler)
 
     setTimeout(scrollToBottom, 280)
