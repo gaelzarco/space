@@ -1,3 +1,5 @@
+export const fetchCache = 'no-store'
+
 import { randomUUID } from 'crypto'
 import type { NextRequest } from 'next/server'
 import { type Session, getServerSession } from 'next-auth'
