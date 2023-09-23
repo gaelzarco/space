@@ -1,5 +1,9 @@
 <div align="center">
-<!-- <h1>Social Space (sSpace)</h1> -->
+
+# [sSpace](https://sspace.vercel.app)
+#### Chat in real-time with anyone around the world. 
+
+#### Real-time, fast, and elegantly designed for larger screens.
 
 <img src='https://img.shields.io/github/commit-activity/m/gaelzarco/sspace?style=plastic' alt='Commits per Month'>
 
@@ -14,11 +18,6 @@
 <img src='https://img.shields.io/badge/Redis-Redis/?logo=Redis&color=black' alt='Redis'>
 
 </div>
-
-# [sSpace](https://sspace.vercel.app)
-#### Chat in real-time with anyone around the world. 
-
-#### Real-time, fast, and elegantly designed for larger screens.
 
 <div align='left'>
   
