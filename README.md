@@ -1,34 +1,65 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<div align="center">
+<h1>Social Space (sSpace)</h1>
 
-## Getting Started
+<img src='https://img.shields.io/github/commit-activity/m/gaelzarco/sspace?style=plastic' alt='Commits per Month'>
 
-First, run the development server:
+<div align='center'>
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+<img src='https://img.shields.io/badge/NextJS-NextJS/?logo=nextdotjs&color=black' alt='NextJS'>
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+<img src="https://img.shields.io/badge/TypeScript-TypeScript/?logo=typescript&color=black" alt="TypeScript">
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+<img src='https://img.shields.io/badge/Tailwind-Tailwind/?logo=tailwindcss&color=black' alt= 'Tailwind CSS'>
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+<img src='https://img.shields.io/badge/Redis-Redis/?logo=Redis&color=black' alt='Redis'>
+
+</div>
+
+# [sSpace](https://sspace.vercel.app)
+#### Chat in real-time with anyone around the world. 
+
+#### Real-time, fast, and elegantly designed for larger screens.
+
+<div align='left'>
+  
+  ## Features
+  
+  - User authentication with NextAuth
+  - Add friends in real-time
+  - Message your friends in realt-ime
+  - Real-time message notifications
+  - Toast notifications
+  - Dropdown menus
+  - Serverless database (Upstash) and application infrastructure
+  - Real-time friend requests
+  - Webhooks
+  - Light and Dark mode
+  - Relative time indication
+  - Tailwind CSS stlying
+  - React Server Components
+  - Redis database (Upstash)
+    
+</div>
+
+## Screenshots
+
+<img src='https://readmeimg.s3.us-west-2.amazonaws.com/landingshots.png' width='100%'>
+
+<img src='https://readmeimg.s3.us-west-2.amazonaws.com/darkshots.png' width='100%'>
+
+<img src='https://readmeimg.s3.us-west-2.amazonaws.com/whiteshots.png' width='100%'>
+
+<img src='https://readmeimg.s3.us-west-2.amazonaws.com/newmessageshots.png' width='100%'>
+
+<img src='https://readmeimg.s3.us-west-2.amazonaws.com/clownshots.png' width='100%'>
 
 ## Learn More
+To learn more about the [Next.JS 13](https://nextjs.org/docs), take a look at the following resources:
 
-To learn more about Next.js, take a look at the following resources:
+✧ [Tailwind CSS](https://tailwindcss.com/docs) ✧
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+✧ [Redis with Upstash](https://upstash.com/docs) ✧
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Special thanks to [Josh Tried Coding](https://github.com/t3-oss/create-t3-app](https://www.youtube.com/@joshtriedcoding)https://www.youtube.com/@joshtriedcoding) for the idea and execution.
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+</div>
