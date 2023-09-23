@@ -1,5 +1,5 @@
 <div align="center">
-<h1>Social Space (sSpace)</h1>
+<!-- <h1>Social Space (sSpace)</h1> -->
 
 <img src='https://img.shields.io/github/commit-activity/m/gaelzarco/sspace?style=plastic' alt='Commits per Month'>
 
