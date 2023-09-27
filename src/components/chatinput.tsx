@@ -14,6 +14,7 @@ import { z } from 'zod'
 import { Input } from '@/components/ui/input'
 import Button from '@/components/ui/button'
 import { chatHrefConstructor } from '@/lib/utils'
+import { ArrowUpIcon } from '@radix-ui/react-icons'
 
 interface ChatInputProps {
   userId: string
@@ -118,13 +119,13 @@ const ChatInput: FC<ChatInputProps> = ({ userId, friend }) => {
           value={message}
         />
         <Button
-          className='mr-4 text-lg'
+          className='mr-4 w-min max-xl:min-w-0 min-w-0 px-2'
           name='send message button'
           type='submit'
           aria-label='send message'
           isLoading={isLoading}
         >
-          Send
+          <ArrowUpIcon className='h-5 w-5' />
         </Button>
       </form>
     </div>
