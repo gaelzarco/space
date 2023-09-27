@@ -1,5 +1,3 @@
-export const revalidate = 0
-
 import { type FC } from 'react'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'

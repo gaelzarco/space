@@ -10,12 +10,11 @@ import { z } from 'zod'
 
 export async function POST(req: NextRequest) {
   const session: Session | null = await getServerSession(authOptions)
-
   if (!session) return new Response('Unauthorized', { status: 401 })
 
-  try {
-    const { text, chatId }: { text: string; chatId: string } = await req.json()
+  const { text, chatId }: { text: string; chatId: string } = await req.json()
 
+  try {
     const splitChatId: Array<string> = chatId.split('--')
 
     const userId = splitChatId.find((id) => id === session.user.id)
