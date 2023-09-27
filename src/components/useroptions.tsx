@@ -17,7 +17,7 @@ import { CaretDownIcon, CaretUpIcon } from '@radix-ui/react-icons'
 const UserOptions: FC<{ session: Session }> = async ({ session }) => {
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className='inline-flex items-center justify-center rounded-full dark:text-white hover:text-neutral-700 dark:hover:text-neutral-300 h-8 py-5 px-6 m-2 transition-all duration-200 ease-in-out'>
+      <DropdownMenuTrigger className='inline-flex items-center justify-center rounded-full dark:text-white hover:text-neutral-700 dark:hover:text-neutral-300 h-8 py-5 px-6 max-md:px-0 m-2 transition-all duration-200 ease-in-out'>
         <div className='inline-flex items-center content-center justify-center'>
           <CaretDownIcon className='w-4 h-4 mr-2 max-md:hidden' />
           <CaretUpIcon className='w-4 h-4 mr-2 md:hidden' />
