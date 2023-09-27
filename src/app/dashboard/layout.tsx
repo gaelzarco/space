@@ -3,7 +3,6 @@ import type { Metadata } from 'next'
 
 import DashNavBar from '@/components/dashnavbar'
 import DashSideBar from '@/components/dashsidebar'
-import MobileNavBar from '@/components/mobilenavbar'
 
 export const metadata: Metadata = {
   title: 'sSpace',
@@ -23,10 +22,6 @@ export default async function Layout({ children }: { children: ReactNode }) {
         </div>
 
         <div className='h-screen w-full'>{children}</div>
-
-        <div className='lg:hidden fixed bottom-0 h-full'>
-          <MobileNavBar />
-        </div>
       </div>
     </main>
   )

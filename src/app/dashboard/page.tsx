@@ -4,6 +4,7 @@ import { type Session, getServerSession } from 'next-auth'
 import { authOptions } from '@/app/api/auth/[...nextauth]/route'
 import { getFriendsByUserId } from '@/helpers/getFriendsByUserId'
 
+import MobileNavBar from '@/components/mobilenavbar'
 import Friends from '@/components/friends'
 import AddFriendsDialog from '@/components/addfriendsdialog'
 
@@ -32,6 +33,10 @@ const Dashboard: FC = async () => {
 
         <div className='w-full h-full flex items-center md:hidden'>
           <Friends userId={session.user.id} initialFriends={friends} />
+        </div>
+
+        <div className='w-full bottom-0 fixed'>
+          <MobileNavBar />
         </div>
       </div>
     </div>
