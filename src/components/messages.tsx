@@ -50,7 +50,7 @@ const Messages: FC<MessageProps> = ({
   }, [chatId, messages])
 
   return (
-    <div className='absolute flex flex-col h-full w-full overflow-y-auto py-20 scrollbar-hide'>
+    <div className='absolute flex flex-col h-full max-md:h-[100dvh] w-full overflow-y-auto py-20 max-md:py-18 scrollbar-hide'>
       <div ref={parent} className='flex flex-col justify-end w-full p-2'>
         {messages.map((message, i) => {
           const nextMessage: Message = messages[i + 1]

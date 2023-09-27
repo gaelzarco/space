@@ -17,7 +17,7 @@ const Dashboard: FC = async () => {
   return (
     <div className='flex flex-col h-full w-full'>
       <div className='static top-0 flex flex-row text-sm items-center justify-between w-full py-2 px-3 backdrop-blur-xl bg-neutral-100/70 dark:bg-neutral-950/70 z-10'>
-        <div className='cursor-default text-2xl flex flex-row items-center justify-between w-full h-full font-bold dark:text-white p-2 m-2'>
+        <div className='cursor-default text-2xl flex flex-row items-center justify-between w-full h-full font-bold dark:text-white p-2 max-md:px-0 m-2 max-md:mx-0'>
           Dashboard
         </div>
 
@@ -26,7 +26,7 @@ const Dashboard: FC = async () => {
         </div>
       </div>
 
-      <div className='w-full h-full flex items-center content-center justify-center'>
+      <div className='w-full h-full max-md:h-auto max-md:flex-grow flex items-center content-center justify-center'>
         <h1 className='max-md:hidden text-md mb-2 text-neutral-400 dark:text-neutral-500'>
           See what your friends are saying
         </h1>

@@ -10,7 +10,7 @@ body {
 }
 
 .layout-1800 {
-  @apply flex flex-col w-full max-h-screen mx-auto;
+  @apply flex flex-col w-full max-h-screen max-md:max-h-[100dvh] mx-auto;
 }
 
 .mobile-fixed {
