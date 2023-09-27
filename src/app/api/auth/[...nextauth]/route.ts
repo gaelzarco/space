@@ -12,7 +12,7 @@ function getGithubCredential() {
   }
   return {
     clientId,
-    clientSecret,
+    clientSecret
   }
 }
 
@@ -24,27 +24,27 @@ function getGoogleCredentials() {
   }
   return {
     clientId,
-    clientSecret,
+    clientSecret
   }
 }
 
 export const authOptions: NextAuthOptions = {
   adapter: UpstashRedisAdapter(db),
   session: {
-    strategy: 'jwt',
+    strategy: 'jwt'
   },
   pages: {
-    signIn: '/login',
+    signIn: '/login'
   },
   providers: [
     GitHubProvider({
       clientId: getGithubCredential().clientId,
-      clientSecret: getGithubCredential().clientSecret,
+      clientSecret: getGithubCredential().clientSecret
     }),
     GoogleProvider({
       clientId: getGoogleCredentials().clientId,
-      clientSecret: getGoogleCredentials().clientSecret,
-    }),
+      clientSecret: getGoogleCredentials().clientSecret
+    })
   ],
   callbacks: {
     async jwt({ token, user }) {
@@ -78,10 +78,11 @@ export const authOptions: NextAuthOptions = {
 
       return session
     },
+
     redirect() {
-      return '/'
-    },
-  },
+      return '/dashboard'
+    }
+  }
 }
 
 const handler = NextAuth(authOptions)
