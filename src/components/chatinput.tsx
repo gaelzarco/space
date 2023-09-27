@@ -110,7 +110,7 @@ const ChatInput: FC<ChatInputProps> = ({ userId, friend }) => {
         aria-label='message form'
       >
         <Input
-          className='ml-4'
+          className='ml-4 text-lg'
           ref={inputRef}
           name='message input'
           aria-label='type message'
@@ -118,7 +118,7 @@ const ChatInput: FC<ChatInputProps> = ({ userId, friend }) => {
           value={message}
         />
         <Button
-          className='mr-4'
+          className='mr-4 text-lg'
           name='send message button'
           type='submit'
           aria-label='send message'

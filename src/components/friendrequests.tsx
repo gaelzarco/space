@@ -1,10 +1,9 @@
 'use client'
 
 import { type FC, useEffect, useState } from 'react'
-import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import { pusherClient } from '@/lib/pusher'
-import { toPusherKey, chatHrefConstructor } from '@/lib/utils'
+import { toPusherKey } from '@/lib/utils'
 import { useToast } from '@/components/ui/use-toast'
 import { z } from 'zod'
 
@@ -36,7 +35,6 @@ const FriendRequests: FC<FriendRequestsProps> = ({
   const [friendRequests, setFriendRequests] = useState<IncomingFriendRequest[]>(
     incomingFriendRequests
   )
-  const router = useRouter()
   const { toast } = useToast()
 
   useEffect(() => {

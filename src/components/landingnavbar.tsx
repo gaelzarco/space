@@ -6,7 +6,6 @@ import { cn } from '@/lib/utils'
 
 import Button from '@/components/ui/button'
 import ThemeSwitch from '@/components/themeswitch'
-// import NavBarLogo from './navbarlogo'
 
 interface NavBarProps extends HTMLAttributes<HTMLDivElement> {}
 
