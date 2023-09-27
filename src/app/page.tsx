@@ -20,24 +20,24 @@ export default function Home() {
         <div className='flex max-sm:flex-col flex-row w-full items-center justify-center max-sm:my-0 max-sm:mb-44 my-10'>
           <div className='mt-10 flex max-sm:flex-col flex-row items-center max-sm:w-[80%] w-[95%] h-[180px] justify-between'>
             <div className='flex flex-col items-center text-center leading-8 justify-center max-sm:mt-4 max-sm:w-full w-[32.9%] max-sm:min-h-[100px] h-full bg-neutral-200 dark:bg-neutral-900 dark:text-white max-sm:rounded-full rounded-l-[45px] rounded-r-lg'>
-              <h1 className='max-xl:text-lg text-xl font-semibold'>
+              <h1 className='max-xl:text-xl text-2xl font-semibold'>
                 NextJS 13
               </h1>
-              <h2 className='max-xl:text-xs text-md text-neutral-500 font-semibold'>
+              <h2 className='max-xl:text-sm text-lg text-neutral-500 font-semibold'>
                 Serverless architecture
               </h2>
             </div>
             <div className='flex flex-col items-center text-center leading-8 justify-center max-sm:mt-4 max-sm:w-full w-[32.9%] max-sm:min-h-[100px] h-full bg-neutral-200 dark:bg-neutral-900 dark:text-white max-sm:rounded-full rounded-lg'>
-              <h1 className='max-xl:text-lg text-xl font-semibold'>
+              <h1 className='max-xl:text-xl text-2xl font-semibold'>
                 Tailwind CSS
               </h1>
-              <h2 className='max-xl:text-xs text-md text-neutral-500 font-semibold'>
-                Inline styling for the modern web
+              <h2 className='max-xl:text-sm text-lg text-neutral-500 font-semibold'>
+                Styling for the modern web
               </h2>
             </div>
             <div className='flex flex-col items-center text-center leading-8 justify-center max-sm:mt-4 max-sm:w-full w-[32.9%] max-sm:min-h-[100px] h-full bg-neutral-200 dark:bg-neutral-900 dark:text-white max-sm:rounded-full rounded-l-lg rounded-r-[45px]'>
-              <h1 className='max-xl:text-lg text-xl font-semibold'>Redis</h1>
-              <h2 className='max-xl:text-xs text-md text-neutral-500 font-semibold'>
+              <h1 className='max-xl:text-xl text-2xl font-semibold'>Redis</h1>
+              <h2 className='max-xl:text-sm text-lg text-neutral-500 font-semibold'>
                 Serverless database w/ Upstash
               </h2>
             </div>
