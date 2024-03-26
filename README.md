@@ -59,6 +59,6 @@ To learn more about the [Next.JS 13](https://nextjs.org/docs), take a look at th
 
 ✧ [Redis with Upstash](https://upstash.com/docs) ✧
 
-Special thanks to [Josh Tried Coding](https://github.com/t3-oss/create-t3-app](https://www.youtube.com/@joshtriedcoding)https://www.youtube.com/@joshtriedcoding) for the idea and execution.
+Special thanks to [Josh Tried Coding](https://github.com/t3-oss/create-t3-app](https://www.youtube.com/@joshtriedcoding)https://www.youtube.com/@joshtriedcoding).
 
 </div>
