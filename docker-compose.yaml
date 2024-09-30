@@ -1,0 +1,11 @@
+name: space 
+services:
+  app:
+    build:
+      context: .
+      dockerfile: next.Dockerfile
+    ports:
+      - 3000:3000
+    env_file:
+      - .env
+    container_name: space_app 
