@@ -24,19 +24,14 @@
   ## Features
   
   - User authentication with NextAuth
-  - Add friends in real-time
-  - Message your friends in realt-ime
+  - Add friends
+  - Message your friends in real-time
   - Real-time message notifications
-  - Toast notifications
-  - Dropdown menus
-  - Serverless database (Upstash) and application infrastructure
   - Real-time friend requests
-  - Webhooks
   - Light and Dark mode
-  - Relative time indication
   - Tailwind CSS stlying
   - React Server Components
-  - Redis database (Upstash)
+  - Redis database
     
 </div>
 
